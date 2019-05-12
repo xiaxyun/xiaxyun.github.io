@@ -449,6 +449,41 @@
 
       <h2 class="post-title">
         
+            <a class="post-title-link" href="/2017/07/10/「体能训练理论」之功能性/" itemprop="url">
+              
+                <span itemprop="name">「体能训练理论」之功能性</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2017-07-10T00:00:00+08:00" content="2017-07-10">
+          07-10
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+      
+
+        
+        
+        
+
+        
+        
+
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
             <a class="post-title-link" href="/2017/07/10/「体能训练理论」之金字塔/" itemprop="url">
               
                 <span itemprop="name">「体能训练理论」之金字塔</span>
@@ -487,41 +522,6 @@
             <a class="post-title-link" href="/2017/07/10/「体能训练理论」之动力链/" itemprop="url">
               
                 <span itemprop="name">「体能训练理论」之动力链</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-07-10T00:00:00+08:00" content="2017-07-10">
-          07-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/07/10/「体能训练理论」之功能性/" itemprop="url">
-              
-                <span itemprop="name">「体能训练理论」之功能性</span>
               
             </a>
         
@@ -845,8 +845,8 @@
   var ap = new APlayer({
     element: document.getElementById('player1'),                       // Optional, player element
     narrow: false,                                                     // Optional, narrow style
-    autoplay: false,                                                    // Optional, autoplay song(s), not supported by mobile browsers
-    showlrc: 0,                                                        // Optional, show lrc, can be 0, 1, 2, see: ###With lrc
+    autoplay: true,                                                    // Optional, autoplay song(s), not supported by mobile browsers
+    showlrc: true,                                                        // Optional, show lrc, can be 0, 1, 2, see: ###With lrc
     mutex: true,                                                       // Optional, pause other players when this player playing
     theme: '#e6d0b2',                                                  // Optional, theme color, default: #b7daff
     mode: 'random',                                                    // Optional, play mode, can be `random` `single` `circulation`(loop) `order`(no loop), default: `circulation`
@@ -859,6 +859,7 @@
       pic: '/images/visitor.jpg',                                   // Optional, music picture
     }
   });
+  ap.init();
 </script>
 
         </div>

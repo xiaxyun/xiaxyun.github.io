@@ -559,8 +559,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/10/「体能训练理论」之金字塔/" rel="next" title="「体能训练理论」之金字塔">
-                <i class="fa fa-chevron-left"></i> 「体能训练理论」之金字塔
+              <a href="/2017/07/10/「体能训练理论」之功能性/" rel="next" title="「体能训练理论」之功能性">
+                <i class="fa fa-chevron-left"></i> 「体能训练理论」之功能性
               </a>
             
           </div>
@@ -762,8 +762,8 @@ var jiathis_config={
   var ap = new APlayer({
     element: document.getElementById('player1'),                       // Optional, player element
     narrow: false,                                                     // Optional, narrow style
-    autoplay: false,                                                    // Optional, autoplay song(s), not supported by mobile browsers
-    showlrc: 0,                                                        // Optional, show lrc, can be 0, 1, 2, see: ###With lrc
+    autoplay: true,                                                    // Optional, autoplay song(s), not supported by mobile browsers
+    showlrc: true,                                                        // Optional, show lrc, can be 0, 1, 2, see: ###With lrc
     mutex: true,                                                       // Optional, pause other players when this player playing
     theme: '#e6d0b2',                                                  // Optional, theme color, default: #b7daff
     mode: 'random',                                                    // Optional, play mode, can be `random` `single` `circulation`(loop) `order`(no loop), default: `circulation`
@@ -776,6 +776,7 @@ var jiathis_config={
       pic: '/images/visitor.jpg',                                   // Optional, music picture
     }
   });
+  ap.init();
 </script>
 
         </div>

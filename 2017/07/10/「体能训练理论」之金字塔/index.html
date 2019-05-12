@@ -578,8 +578,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/19/为博客添加-Gitalk-评论插件/" rel="prev" title="为博客添加 Gitalk 评论插件">
-                为博客添加 Gitalk 评论插件 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/10/「体能训练理论」之功能性/" rel="prev" title="「体能训练理论」之功能性">
+                「体能训练理论」之功能性 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -771,8 +771,8 @@ var jiathis_config={
   var ap = new APlayer({
     element: document.getElementById('player1'),                       // Optional, player element
     narrow: false,                                                     // Optional, narrow style
-    autoplay: false,                                                    // Optional, autoplay song(s), not supported by mobile browsers
-    showlrc: 0,                                                        // Optional, show lrc, can be 0, 1, 2, see: ###With lrc
+    autoplay: true,                                                    // Optional, autoplay song(s), not supported by mobile browsers
+    showlrc: true,                                                        // Optional, show lrc, can be 0, 1, 2, see: ###With lrc
     mutex: true,                                                       // Optional, pause other players when this player playing
     theme: '#e6d0b2',                                                  // Optional, theme color, default: #b7daff
     mode: 'random',                                                    // Optional, play mode, can be `random` `single` `circulation`(loop) `order`(no loop), default: `circulation`
@@ -785,6 +785,7 @@ var jiathis_config={
       pic: '/images/visitor.jpg',                                   // Optional, music picture
     }
   });
+  ap.init();
 </script>
 
         </div>
