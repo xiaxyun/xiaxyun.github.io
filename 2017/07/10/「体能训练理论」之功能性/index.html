@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="生活,健身,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="引言体能训练是一种开源的程序它所依仗的并不是固有的方法手段，而是能够贯穿始终的逻辑，它是一种指导实践的思维方式，我们管它叫“体能思路”。 体能思路有两个方向，一个是原点，一个是过程。所谓原点我们认为是人体的本质属性，比如之前我们分享的五大运动素质以及动力链理论。所谓过程是我们分析问题实现目的的思考方向以及逻辑，它主要体现在接下来要跟大家分享的功能性原则和金字塔。 今天先来说功能性原则。 功能性我们">
+<meta name="keywords" content="生活,健身">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「体能训练理论」之功能性">
+<meta property="og:url" content="https://xiaxyun.github.io/2017/07/10/「体能训练理论」之功能性/index.html">
+<meta property="og:site_name" content="xiaxyun">
+<meta property="og:description" content="引言体能训练是一种开源的程序它所依仗的并不是固有的方法手段，而是能够贯穿始终的逻辑，它是一种指导实践的思维方式，我们管它叫“体能思路”。 体能思路有两个方向，一个是原点，一个是过程。所谓原点我们认为是人体的本质属性，比如之前我们分享的五大运动素质以及动力链理论。所谓过程是我们分析问题实现目的的思考方向以及逻辑，它主要体现在接下来要跟大家分享的功能性原则和金字塔。 今天先来说功能性原则。 功能性我们">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fhg24pm22dj30e709474v.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fhg251pmatj30go0b5q5d.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fhg25l7ep2j30g609o0ue.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fhg26a2ve0j30go0ce76n.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fhg26h6oejj30go09lwgj.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fhg26rdi6vj30go0b4goo.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fhg276m81pj31h50rgtbv.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fhg28jvnhqj30dw099q3z.jpg">
+<meta property="og:updated_time" content="2019-05-12T06:17:57.125Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「体能训练理论」之功能性">
+<meta name="twitter:description" content="引言体能训练是一种开源的程序它所依仗的并不是固有的方法手段，而是能够贯穿始终的逻辑，它是一种指导实践的思维方式，我们管它叫“体能思路”。 体能思路有两个方向，一个是原点，一个是过程。所谓原点我们认为是人体的本质属性，比如之前我们分享的五大运动素质以及动力链理论。所谓过程是我们分析问题实现目的的思考方向以及逻辑，它主要体现在接下来要跟大家分享的功能性原则和金字塔。 今天先来说功能性原则。 功能性我们">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fhg24pm22dj30e709474v.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiaxyun.github.io/2017/07/10/「体能训练理论」之功能性/">
+
+
+
+
+
+  <title>「体能训练理论」之功能性 | xiaxyun</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xiaxyun</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Stay Hungry, Stay Foolish</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiaxyun.github.io/2017/07/10/「体能训练理论」之功能性/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaxyun">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/about-me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xiaxyun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">「体能训练理论」之功能性</h1>
+        
+
+        <div class="post-meta">
+			
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于&#58;</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-10T00:00:00+08:00">
+                2017-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.5k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>体能训练是一种开源的程序它所依仗的并不是固有的方法手段，而是能够贯穿始终的逻辑，它是一种指导实践的思维方式，我们管它叫“体能思路”。</p>
+<p>体能思路有两个方向，一个是原点，一个是过程。所谓原点我们认为是人体的本质属性，比如之前我们分享的五大运动素质以及动力链理论。所谓过程是我们分析问题实现目的的思考方向以及逻辑，它主要体现在接下来要跟大家分享的功能性原则和金字塔。</p>
+<p>今天先来说功能性原则。</p>
+<h2 id="功能性"><a href="#功能性" class="headerlink" title="功能性"></a>功能性</h2><p>我们所说的功能性是一种解决问题的思维方式，而功能性训练则定义了一种多关节参与，多平面运动的复杂练习。功能性训练是具体的，比较好理解，我就不赘述了，也不评价其优劣，因为在“功能性”的思维方式下，只存在目标之下的合适与否。</p>
+<h3 id="什么是功能性？"><a href="#什么是功能性？" class="headerlink" title="什么是功能性？"></a>什么是功能性？</h3><p>我们把它定义为目标导向下的效率，所以它是一种程度的体现。如果一个练习与目标的相关性强，那么我们认为它具备较强的功能意义；而如果一个练习与它的目标背道而驰，那么我们就认为它缺乏功能意义。</p>
+<p>举个例子，对于偏瘫患者来说，一个手指的屈伸就已经具备非常强的功能意义了，而对于一个马拉松爱好者来说，静蹲的价值可能并不是想象中那么高。</p>
+<p>一般来说，在思考功能性问题的时候我习惯从以下三个方面入手：<strong>肌肉的生理适应</strong> 、<strong>动作模式</strong> 和 <strong>专项需求</strong>。</p>
+<h4 id="1-肌肉的生理适应"><a href="#1-肌肉的生理适应" class="headerlink" title="1. 肌肉的生理适应"></a>1. 肌肉的生理适应</h4><p>其实练肌肉谁都会，是一个相对好入手的技能，但是当你给这个行为赋予体能训练使命的时候就需要思考一些问题，比如说你现在练习所发展的东东真的是你实际运动中所需要的东东么？</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fhg24pm22dj30e709474v.jpg" alt></p>
+<p>我们都知道肌肉的生理收缩模式可以简单的分为向心收缩，离心收缩和静力收缩。现在的研究表明，这三种收缩模式的练习所产生的适应性提高存在显著的特异性。也就是说我向心练习所发展的能力只在向心运动中表现最好，在离心和静力中都不佳。同样，离心收缩也只能获得最好的离心能力收益。而静力就更变态，其训练最佳效果仅仅体现在所锻炼的关节角度下，换一个角度能够迁移的效果有可能都不到一半儿。这样看来，你的训练是不是并没有达到你想要的效果呢？</p>
+<p>举个例子：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fhg251pmatj30go0b5q5d.jpg" alt></p>
+<p>为什么静蹲对于跑步爱好者来说可能并没有那么理想？因为膝关节股四头肌在跑步中以离心缓冲为主，而且角度在伸膝末端的30°左右，而静蹲却是在屈曲90°左右的角度下呆着不动……着不动……不动……动……</p>
+<p>除此之外，需要考虑的问题还很多，比如说发力模式，是加速？减速？还是匀速？再比如关节活动角度上发力点的位置，是伸展末端发力？屈曲极限发力？还是在屈伸过程中的某一点发力？阻力加在哪里，就会在哪里产生最好的适应，那么功能的意义就体现在这里。</p>
+<h4 id="2-动作模式"><a href="#2-动作模式" class="headerlink" title="2. 动作模式"></a>2. 动作模式</h4><p>动作模式是动作程序的体现，而基础动作模式是诸多复杂动作模式共性的抽象体现，并且基础动作模式一定是符合解剖结构和生物力学特点的，说白了也就是我们人体被设计来应该完成的动作。</p>
+<p>如果说大多数运动都可以认为是基础动作模式的升级与排列组合，同时基础动作模式本身又能衍生出来很多训练动作，那么选择和实际运动相对应的练习就是另一个功能性的体现了。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fhg25l7ep2j30g609o0ue.jpg" alt></p>
+<p>比如说发展起跳能力，因为跳是蹲的升级，所以我一定首选深蹲练习；再比如说跑步，存在大量的下肢摆动与支撑的交替，摆动可以认为是下肢开链屈髋与蹬伸，而支撑可以认为是下肢单腿蹲的一瞬间，那么我会选择箱式单腿蹲，保加利亚蹲，悬垂屈髋等等；再再比如，拳击是基于“旋转”加“上肢推”加“单腿蹲”的动作模式，那么我就要练习剪蹲…旋转…单臂…推举…吗？</p>
+<p>其实动作模式的选择要结合动力链一起去思考，这里除了要思考开链还是闭链之外，还要考虑动力链的完整性以及发力的顺序或者说是力学结构。说到上肢推的动作模式，水平推的话我相信很多人都会想到卧推和俯卧撑，那么这两个动作的功能性如何评价呢？</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fhg26a2ve0j30go0ce76n.jpg" alt></p>
+<p><strong>卧推</strong>，一个挺奇葩的动作，奇葩在哪呢？来，咱们数数卧推的主动关节都有哪些：肩关节，肘关节。那么我们上肢链在上肢推动作模式下参与的关节都有哪些呢？肩关节，肘关节！就这些么？再想想！其实你还疏漏了一个非常重要的关节——<strong>肩胛胸关节</strong>！几乎所有上肢的动作都以肩胛胸关节的运动为基础，而卧推却并没有，特别是标准的卧推~</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fhg26h6oejj30go09lwgj.jpg" alt></p>
+<p><strong>俯卧撑</strong>，虽然肩胛胸，肩关节，肘关节全面参与到运动中去，但不巧的是它是一个闭链运动，而实际运动中我们的上肢会以开链为主！呵呵~</p>
+<p>别着急，认真你就输了！上面两段其实是个伪命题，我这么做主要是想通过这个平易近人的例子来帮助大家掌握的分析问题的思路！如果你需要发展上肢最大力量表现，那么显然卧推是你的首选。而如果你要优化上肢的力学结构，特别是水平推的发力顺序，那么俯卧撑是你首选。再如果你要提高上肢的延展性以及伴随旋转的加速能力，那么单臂水平推的练习给你的帮助最大！</p>
+<p>所以，选择什么，看目标喽~</p>
+<h4 id="3-专项需求"><a href="#3-专项需求" class="headerlink" title="3. 专项需求"></a>3. 专项需求</h4><p>其实这个非常好理解，也是功能性原则的根本目的，但是为了和上面两个方向区分开，这里主要针对的是不同的运动素质需求。</p>
+<p>Q：对一个英超的后卫进行长距离高强度的游泳练习是否具备功能性意义？！</p>
+<p>A：具备！</p>
+<p>Q：为什么？</p>
+<p>A：因为他喜欢游泳，这个可以让他心情愉悦然后更好的训练和比赛！</p>
+<p>咳咳！当然，这样的答案是合情合理的！但是我们不妨换一个角度去分析。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fhg26rdi6vj30go0b4goo.jpg" alt></p>
+<p>英超，几乎是足球联赛中对抗最强的，他们的后卫每场比赛动不动就跑个8千1万的，而这8千1万真心不是慢慢悠悠颠儿下来的，而是各种加速减速变向拼抢，所以其强度非常之大。那么这就需要很好的心肺系统功能，一方面体现在有氧与无氧耐力上，另一方面呼吸器官的机能上。游泳练习，不仅可以提高有氧以及无氧耐力，其水环境还可以给胸扩张带来阻力，直接锻炼了呼吸肌的收缩能力。另外，水环境真的能够给人们带来愉悦的感觉，特别是水流水压给肌肉和筋膜的按摩效果，真的是一举两得的“功能性”训练。</p>
+<p>还有，你以为篮球运动员的拳击练习真的只是给枯燥乏味的体能训练增加一点乐趣么？并不是！</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fhg276m81pj31h50rgtbv.jpg" alt></p>
+<p><strong>1. 拳击可以在发生场内冲突的时候很好地保护自己；</strong></p>
+<p><strong>2. 拳击运动可以强化旋转动作模式下的速度、稳定、和准确性；</strong></p>
+<p><strong>3. 拳击是手脚高度协调的运动，对于发展手脚搭配的动作灵敏有神奇的效果。</strong></p>
+<p>而这些不就是一名篮球运动员所需要的么？！</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>所以，功能性原则，解决的是“<strong>为什么练</strong>（for！not why）以及 <strong>练什么</strong>”的问题！</p>
+<p>如果我们是简单活动活动身体那就算了，但如果我们要进行一个有针对性的体能训练，那么请琢磨琢磨你选择的动作是否合理，是否能够满足你的专项需求！</p>
+<p>所以，招财猫式弹力带抗阻外旋真的是练习肩袖首推的动作么？</p>
+<p>所以，蚌式练习和dirty dog真的是发展髋外旋外展能力最好的练习么？</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fhg28jvnhqj30dw099q3z.jpg" alt></p>
+<p>所以，仰卧卷腹发展出来的腹直肌是好看呢？还是好用呢？</p>
+<p>所以，我们真的要来一次大清洗，摒弃掉我们以前那些练习么？</p>
+<p>当然不要！每一个动作都有它存在的意义，都有它的价值所在！有可能这个动作和你要发展的能力不直接相关，但是它可能是你进行“功能性”训练的基础，你不得不去做它！</p>
+<p>所以，训练的逻辑很重要！</p>
+<blockquote>
+<p>转自<a href="https://zhuanlan.zhihu.com/p/20786373" target="_blank" rel="noopener">《体能训练之功能性》</a></p>
+</blockquote>
+
+      
+    </div>
+
+	<div>
+      
+        
+      
+	</div>
+
+    
+
+    
+
+    
+	<div>
+		
+		<div>
+  
+    <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+  
+</div>
+
+		
+	</div>
+    
+    
+    
+
+    
+    
+    
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/生活/" rel="tag"><i class="fa fa-tag"></i> 生活</a>
+          
+            <a href="/tags/健身/" rel="tag"><i class="fa fa-tag"></i> 健身</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/10/CocoaPods私有仓库的创建/" rel="next" title="CocoaPods私有仓库的创建">
+                <i class="fa fa-chevron-left"></i> CocoaPods私有仓库的创建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/10/「体能训练理论」之动力链/" rel="prev" title="「体能训练理论」之动力链">
+                「体能训练理论」之动力链 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+    
+    
+    
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/about-me.jpg" alt="Xiaxyun">
+            
+              <p class="site-author-name" itemprop="name">Xiaxyun</p>
+              <p class="site-description motion-element" itemprop="description">欢迎来到我的博客小站~~</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/xiaxyun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/yourname" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/yourname" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#功能性"><span class="nav-number">2.</span> <span class="nav-text">功能性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是功能性？"><span class="nav-number">2.1.</span> <span class="nav-text">什么是功能性？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-肌肉的生理适应"><span class="nav-number">2.1.1.</span> <span class="nav-text">1. 肌肉的生理适应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-动作模式"><span class="nav-number">2.1.2.</span> <span class="nav-text">2. 动作模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-专项需求"><span class="nav-number">2.1.3.</span> <span class="nav-text">3. 专项需求</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiaxyun</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">39k</span>
+  
+</div>
+
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  <div class="powered-by">
+    <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+  </div>
+
+
+
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":false,"react":{"opacityDefault":0.5,"opacityOnHover":0}},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
