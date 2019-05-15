@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[websocket学习]]></title>
-    <url>%2F2019%2F05%2F12%2Fwebsocket%E5%AD%A6%E4%B9%A0%2F</url>
-    <content type="text"></content>
+    <title><![CDATA[js学习]]></title>
+    <url>%2F2019%2F05%2F13%2Fjs%E5%AD%A6%E4%B9%A0%2F</url>
+    <content type="text"><![CDATA[js基础知识 js包括的内容 ES标准 （制定了js的基本语法{语句、运算符、表达式}，内置的对象{Array、String、Date、Math}）DOM （HTML、XML 能够操作DOM的不仅仅是js，还包括了JAVA、PHP、Python等语言）BOM （浏览器访问对象，包括了弹出框等）应用领域 （验证表单–&gt; 特效交互–&gt; 数据交互{Ajax}–&gt; 游戏开发{canvas}–&gt; 桌面应用、移动应用、小程序等） js基本语法 变量var 获取元素getElementById、querySelector(CSS3.0)、querySelectorAll(css3.0)、 console.log 事件onclick、onmouseover、onmouseout、事件里的 this ，指向触发事件的对象 123object.onclick = function()&#123; // 具体执行 &#125; this一般用在函数内部，指向事件的对象]]></content>
+      <categories>
+        <category>web前端</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[websocket学习]]></title>
