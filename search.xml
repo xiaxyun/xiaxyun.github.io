@@ -25,6 +25,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Java 基础知识]]></title>
+    <url>%2F2019%2F08%2F28%2FJava-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%2F</url>
+    <content type="text"><![CDATA[Java基础知识语言基础基本数据类型 boolean 包装类Boolean 数值类型 整型 byte 8位 short 16位 包装类Short int 32位 包装类Integer long 64位 包装类Long 字符 char 16位 包装类Character 浮点型 float 32位 包装类Float double 64位 包装类Double 主类结构 包 成员变量和局部变量 主方法 API类库 类型转换 自动类型转换 数值范围由小向大 表达式自动提升类型 强制类型转换 int b =10; int a = (short)b; 变量与常量运算符 三元运算符 表达式？true：false 位运算符 按位与&amp; 按 位或| 按位取反~ 按位异或^ 移位操作 左移&lt;&lt; 右移&gt;&gt; 无符号右移&gt;&gt;&gt; 自增++、自减– 逻辑运算 与&amp;&amp; 或|| 非! 代码注释及编码规范 // / / /* / 引用数据类型 类object 接口类型 数组类型 null类型 枚举类型 标注类型 类与对象 OOP面向对象编程 封装、继承、多态 只能单继承，可以实现多个接口 抽象类与接口 包装类 拆箱：将对象拆箱为基本类型 装箱：将基本类型封装为对象 数字处理Math类 数字格式化 小数形式0.001~10 000 000 科学计数法E’ DecimalFormat 数学运算方法 三角函数 指数函数 对数函数 平方根 随机数 math.random方法 (int)m+(int)(math.random()*n)产生m~m+n (char)a+(char)(math.random()*（b-a+1)产生a~b Random类 随机数种子 Random r = new Random(); 大数字运算 BigInteger大整数 基本数学运算 位运算 去相反数 绝对值 最大公约数 是否是素数 BigDecimal大小数 流程控制foreach]]></content>
+      <categories>
+        <category>java学习</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>java基础</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java 核心知识]]></title>
     <url>%2F2019%2F08%2F28%2FJava-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%2F</url>
     <content type="text"><![CDATA[Java核心多线程 并发、多线程机制：程序同时完成多件事情 Thread类继承方式使用 Runnable接口使用 线程的生命周期 出生 创建new Thread(） 就绪 t.start() 运行 等待 休眠 阻塞 死亡 线程同步 线程安全 HashMap线程不安全 异步的 currentHashmap可解决 HashTable线程安全 同步的 线程同步机制 同步块 synchronized(object){ //访问资源的代码块} 同步方法 在方法前加上修饰synchronized void 份（）{//访问资源的代码} 网络编程 应用层 TCP/IP协议 传输层 互联网层 网络层 TCP、UDP协议 TCP固接连接为基础 socket类编程 inteAddress类 ServerSocket类 服务器套接字，等待来自网络上的请求 聊天室 UDP无连接的通信协议 发送端 DatagramSocket创建套接字 DatagramPacket创建数据包 send 接收端 DatagramSocket创建套接字，接收端口 DatagramPacket创建字节组，接收数据包 receive 不断广播，同组的主机可随时接收数据包 224.0.0.0~224.255.255.255 端口、套接字 端口 提供多种服务 套接字Socket 将应用程序与端口连接起来 集合类 Collection List集合 ArrayList 异步的 动态数组 LinkedList 方法 get set Set集合 HashSet TreeSet 元素不可重复 方法 添加 add 删除 remove 查找 遍历 迭代器iterator() Map集合 Hashmap 效率更高 hash表实现 异步的，线程不安全 可接受空值null TreeMap 存在映射顺序 Map中的key对象有一定顺序 顺序输出时转换为Treemap 方法 put（key，value）添加 是否包含containsKey(key) get(key)返回指定可以的内容 keyset返回所有key的set集合 values值对象的collection集合 Dictionary类 HashTable 同步的，保证线程安全 不能为空值 Vector类 动态数组 同步的，线程安全的 单独的方法操作上是安全的 方法都使用了synchronized修饰 序列化 底层实现与ArrayList类似 JVM相关 内存分配 堆-分配对象 栈-线程的工作空间 方法区-静态方法，变量，常量池 操作计数器 垃圾回收机制 异常处理 异常类 当某个方法出现异常会创建一个异常对象 处理异常 当前方法中处理 向上抛出异常 捕捉异常 try{}catch(Exceptiontype e){} try中有异常，则后面的不会执行 catch后面的继续执行 自定义异常 throw抛出异常 throws抛出的错误信息 运行时异常 Throwable类的子类 常见异常 类型转换异常 未找到相应类异常‘’ 算数异常 数组下标越界异常 数组包含不兼容的值 操作数据库异常 空指针异常 字段未找到、方法未找到 字符串转数字异常 数组元素个数为负数异常 字符串索引异常 IO异常 不允许访问某类异常 newInstance创建实例，但类不允许实例化 文件已结束、文件未找到异常 枚举类型与泛型 枚举类型 将常量封装在类中或接口中，编译时检查 常量放在枚举类型中enum 优点 类型安全 紧凑有效的数据定义 可以和程序其他部分完美交互 运行效率高 泛型 解决类型安全问题，提供编译时安全检查 总结 泛型的参数必须是类类型，不可以是简单类型 参数可有多个 可使用extends限制泛型的类型 可使用通配符限定泛型的类型 输入输出 字节输入输出流 InputStream 字节输入流 Reader类 FileReader OutputStream Writer类 FileWriter 文件输入输出流 File类 获取文件基本信息 FileInputStream文件输入 FileoutputStream文件输出 缓存区输入输出 BufferedInputStream BufferedReader BufferedOutputStream BufferedWriter 缓存是IO的性能优化 数据输入输出流 DataInputStream DataOutputStream 不必关心数据类型 ZIP压缩输入输出流 ZipEntry类 ZipInpuStream ZipOutputStream 数据库操作 JDBC java.sql connection接口 Statement接口 preparedstatement drivermanager resultset 特点 安全性控制 并发控制 完整性控制 故障的发现和恢复 SQL语言 数据定义 create、alter 数据操纵 select、insert、 数据控制 grant、revoke 事务控制 commit、rollback]]></content>
