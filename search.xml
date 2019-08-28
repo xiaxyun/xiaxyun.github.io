@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Java 必备知识]]></title>
+    <url>%2F2019%2F08%2F28%2FJava-%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86%2F</url>
+    <content type="text"><![CDATA[Java必备知识JVM相关内存模型与结构垃圾回收原理，性能调优class二进制字节码结构class loader体系class加载过程实例创建过程方法执行过程Java运行带package的类如何运行各个路径classpathjavalibrarypathjava运行主目录分支主题java多线程多线程实现和启动callable与runnablesyncrhoized’与reentranLock线程池集合框架HashMap与HashTableHashMap异步的，线程不安全HashTable同步的，线程安全ArrayList与VectorArrayList异步的，线程不安全三种迭代方式foreach(str:list)数组遍历for(i;i&lt;;++i)使用迭代器while(itera.hasnext())Vector同步的，线程安全，单独的方法使用synicalized动态数组Collection集合，元素集合List、Set 和 QueueArrayList、LinkedList、HashSet、LinkedHashSet抽象类具体实现类集合是一个对象，可容纳其他对象的引用比较器Map图，键/值对HashMap、LinkedHashMapMap遍历方式for (String key : map.keySet())Map.entrySet使用iterator遍历key和valueMap.entrySet遍历key和valueMap.values()遍历所有的value，但不能遍历keyjava.util其他类VectorStack默认的扩容方式是原来的2倍DictionaryHashtableProperties持久的属性集BitSet存储位值，数组随需要增加Java序列化一个对象可被表示为一个字节序列，包含对象的数据、有关对象的类型信息和存储在对象中的数据的类型反序列化，JVM独立的在任何平台上均可反序列化]]></content>
+      <categories>
+        <category>Java 学习</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Java 基础</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Hello World]]></title>
     <url>%2F2019%2F08%2F28%2Fhello-world%2F</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
