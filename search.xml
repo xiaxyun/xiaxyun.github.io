@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Java 核心知识]]></title>
+    <url>%2F2019%2F08%2F28%2FJava-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%2F</url>
+    <content type="text"><![CDATA[Java核心多线程并发、多线程机制：程序同时完成多件事情Thread类继承方式使用Runnable接口使用线程的生命周期出生创建new Thread(）就绪t.start()运行等待休眠阻塞死亡线程同步线程安全HashMap线程不安全currentHashmap可解决异步的HashTable线程安全同步的线程同步机制同步块synchronized(object){ //访问资源的代码块}同步方法在方法前加上修饰synchronized void 份（）{//访问资源的代码}网络编程TCP/IP协议应用层传输层互联网层网络层TCP、UDP协议TCP固接连接为基础socket类编程inteAddress类ServerSocket类服务器套接字，等待来自网络上的请求聊天室UDP无连接的通信协议发送端DatagramSocket创建套接字DatagramPacket创建数据包send接收端DatagramSocket创建套接字，接收端口DatagramPacket创建字节组，接收数据包receive不断广播，同组的主机可随时接收数据包224.0.0.0~224.255.255.255端口、套接字端口提供多种服务套接字Socket将应用程序与端口连接起来集合类CollectionList集合ArrayList异步的动态数组LinkedList方法getsetSet集合HashSetTreeSet元素不可重复方法遍历迭代器iterator()添加add删除remove查找Map集合Hashmap效率更高hash表实现异步的，线程不安全可接受空值nullTreeMap存在映射顺序Map中的key对象有一定顺序顺序输出时转换为Treemap方法put（key，value）添加是否包含containsKey(key)get(key)返回指定可以的内容keyset返回所有key的set集合values值对象的collection集合Dictionary类HashTable同步的，保证线程安全不能为空值Vector类动态数组同步的，线程安全的单独的方法操作上是安全的方法都使用了synchronized修饰序列化底层实现与ArrayList类似JVM相关内存分配垃圾回收机制异常处理异常类当某个方法出现异常会创建一个异常对象处理异常当前方法中处理向上抛出异常捕捉异常try{}catch(Exceptiontype e){}try中有异常，则后面的不会执行catch后面的继续执行自定义异常throw抛出异常throws抛出的错误信息运行时异常每个包中都定义了异常类Throwable类的子类常见异常类型转换异常未找到相应类异常‘’算数异常数组下标越界异常数组包含不兼容的值操作数据库异常空指针异常字段未找到、方法未找到字符串转数字异常数组元素个数为负数异常字符串索引异常IO异常不允许访问某类异常newInstance创建实例，但类不允许实例化文件已结束、文件未找到异常枚举类型与泛型枚举类型将常量封装在类中或接口中，编译时检查常量放在枚举类型中enum优点类型安全紧凑有效的数据定义可以和程序其他部分完美交互运行效率高泛型解决类型安全问题，提供编译时安全检查总结泛型的参数必须是类类型，不可以是简单类型参数可有多个可使用extends限制泛型的类型可使用通配符限定泛型的类型输入输出字节输入输出流InputStream字节输入流Reader类FileReaderOutputStreamWriter类FileWriter文件输入输出流File类获取文件基本信息FileInputStream文件输入FileoutputStream文件输出缓存区输入输出BufferedInputStreamBufferedReaderBufferedOutputStreamBufferedWriter缓存是IO的性能优化数据输入输出流DataInputStreamDataOutputStream不必关心数据类型ZIP压缩输入输出流ZipEntry类ZipInpuStreamZipOutputStream数据库操作JDBCjava.sqlconnection接口Statement接口preparedstatementdrivermanagerresultset特点安全性控制并发控制完整性控制故障的发现和恢复SQL语言数据定义create、alter数据操纵select、insert、数据控制grant、revoke事务控制commit、rollback]]></content>
+      <categories>
+        <category>java学习</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>java核心</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java 必备知识]]></title>
     <url>%2F2019%2F08%2F28%2FJava-%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86%2F</url>
     <content type="text"><![CDATA[Java必备知识JVM相关内存模型与结构垃圾回收原理，性能调优class二进制字节码结构class loader体系class加载过程实例创建过程方法执行过程Java运行带package的类如何运行各个路径classpathjavalibrarypathjava运行主目录分支主题java多线程多线程实现和启动callable与runnablesyncrhoized’与reentranLock线程池集合框架HashMap与HashTableHashMap异步的，线程不安全HashTable同步的，线程安全ArrayList与VectorArrayList异步的，线程不安全三种迭代方式foreach(str:list)数组遍历for(i;i&lt;;++i)使用迭代器while(itera.hasnext())Vector同步的，线程安全，单独的方法使用synicalized动态数组Collection集合，元素集合List、Set 和 QueueArrayList、LinkedList、HashSet、LinkedHashSet抽象类具体实现类集合是一个对象，可容纳其他对象的引用比较器Map图，键/值对HashMap、LinkedHashMapMap遍历方式for (String key : map.keySet())Map.entrySet使用iterator遍历key和valueMap.entrySet遍历key和valueMap.values()遍历所有的value，但不能遍历keyjava.util其他类VectorStack默认的扩容方式是原来的2倍DictionaryHashtableProperties持久的属性集BitSet存储位值，数组随需要增加Java序列化一个对象可被表示为一个字节序列，包含对象的数据、有关对象的类型信息和存储在对象中的数据的类型反序列化，JVM独立的在任何平台上均可反序列化]]></content>

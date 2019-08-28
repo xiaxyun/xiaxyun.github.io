@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<script src="/js/src/Aplayer-Controler.js"></script>
+<div id="AP-controler"></div>
+<script type="text/javascript">
+  var myapc=new APlayer_Controler({
+    APC_dom:$('#AP-controler'),
+    aplayer:ap, //此为绑定的aplayer对象
+    attach_right:true,
+    position:{top:'300px',bottom:''},
+    fixed:true,
+    btn_width:100,
+    btn_height:120,
+    img_src:['http://oty1v077k.bkt.clouddn.com/bukagirl.jpg',
+      'http://oty1v077k.bkt.clouddn.com/jumpgirl.jpg',
+      'http://oty1v077k.bkt.clouddn.com/pentigirl.jpg',
+      'http://oty1v077k.bkt.clouddn.com/%E8%90%8C1.gif'],
+    img_style:{repeat:'no-repeat',position:'center',size:'contain'},
+    ctrls_color:'rgba(173,255,47,0.8)',
+    ctrls_hover_color:'rgba(255,140,0,0.7)',
+    tips_on:true,
+    tips_width:140,
+    tips_height:25,
+    tips_color:'rgba(255,255,255,0.6)',
+    tips_content:{},
+    timeout:30
+  });
+</script>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java,java核心,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="多线程，网络编程，枚举类型，异常处理，集合类，输入输出">
+<meta name="keywords" content="java,java核心">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 核心知识">
+<meta property="og:url" content="https://xiaxyun.github.io/2019/08/28/Java-核心知识/index.html">
+<meta property="og:site_name" content="xiaxyun">
+<meta property="og:description" content="多线程，网络编程，枚举类型，异常处理，集合类，输入输出">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-28T11:43:33.449Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 核心知识">
+<meta name="twitter:description" content="多线程，网络编程，枚举类型，异常处理，集合类，输入输出">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiaxyun.github.io/2019/08/28/Java-核心知识/">
+
+
+
+
+
+  <title>Java 核心知识 | xiaxyun</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'true', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xiaxyun</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Stay Hungry, Stay Foolish</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiaxyun.github.io/2019/08/28/Java-核心知识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaxyun">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/about-me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xiaxyun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java 核心知识</h1>
+        
+
+        <div class="post-meta">
+			
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于&#58;</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-28T19:41:51+08:00">
+                2019-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于&#58;</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java学习/" itemprop="url" rel="index">
+                    <span itemprop="name">java学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/08/28/Java-核心知识/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/08/28/Java-核心知识/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  981字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3分钟
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  多线程，网络编程，枚举类型，异常处理，集合类，输入输出
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Java核心"><a href="#Java核心" class="headerlink" title="Java核心"></a>Java核心</h1><h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><h3 id="并发、多线程机制：程序同时完成多件事情"><a href="#并发、多线程机制：程序同时完成多件事情" class="headerlink" title="并发、多线程机制：程序同时完成多件事情"></a>并发、多线程机制：程序同时完成多件事情</h3><h4 id="Thread类继承方式使用"><a href="#Thread类继承方式使用" class="headerlink" title="Thread类继承方式使用"></a>Thread类继承方式使用</h4><h4 id="Runnable接口使用"><a href="#Runnable接口使用" class="headerlink" title="Runnable接口使用"></a>Runnable接口使用</h4><h3 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h3><h4 id="出生"><a href="#出生" class="headerlink" title="出生"></a>出生</h4><h5 id="创建new-Thread-）"><a href="#创建new-Thread-）" class="headerlink" title="创建new Thread(）"></a>创建new Thread(）</h5><h4 id="就绪"><a href="#就绪" class="headerlink" title="就绪"></a>就绪</h4><h5 id="t-start"><a href="#t-start" class="headerlink" title="t.start()"></a>t.start()</h5><h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><h4 id="等待"><a href="#等待" class="headerlink" title="等待"></a>等待</h4><h4 id="休眠"><a href="#休眠" class="headerlink" title="休眠"></a>休眠</h4><h4 id="阻塞"><a href="#阻塞" class="headerlink" title="阻塞"></a>阻塞</h4><h4 id="死亡"><a href="#死亡" class="headerlink" title="死亡"></a>死亡</h4><h3 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h3><h4 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h4><h5 id="HashMap线程不安全"><a href="#HashMap线程不安全" class="headerlink" title="HashMap线程不安全"></a>HashMap线程不安全</h5><h6 id="currentHashmap可解决"><a href="#currentHashmap可解决" class="headerlink" title="currentHashmap可解决"></a>currentHashmap可解决</h6><h6 id="异步的"><a href="#异步的" class="headerlink" title="异步的"></a>异步的</h6><h5 id="HashTable线程安全"><a href="#HashTable线程安全" class="headerlink" title="HashTable线程安全"></a>HashTable线程安全</h5><h6 id="同步的"><a href="#同步的" class="headerlink" title="同步的"></a>同步的</h6><h4 id="线程同步机制"><a href="#线程同步机制" class="headerlink" title="线程同步机制"></a>线程同步机制</h4><h5 id="同步块"><a href="#同步块" class="headerlink" title="同步块"></a>同步块</h5><h6 id="synchronized-object-访问资源的代码块"><a href="#synchronized-object-访问资源的代码块" class="headerlink" title="synchronized(object){    //访问资源的代码块}"></a>synchronized(object){    //访问资源的代码块}</h6><h5 id="同步方法"><a href="#同步方法" class="headerlink" title="同步方法"></a>同步方法</h5><h6 id="在方法前加上修饰synchronized-void-份（）-访问资源的代码"><a href="#在方法前加上修饰synchronized-void-份（）-访问资源的代码" class="headerlink" title="在方法前加上修饰synchronized void 份（）{//访问资源的代码}"></a>在方法前加上修饰synchronized void 份（）{//访问资源的代码}</h6><h2 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h2><h3 id="TCP-IP协议"><a href="#TCP-IP协议" class="headerlink" title="TCP/IP协议"></a>TCP/IP协议</h3><h4 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h4><h4 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h4><h4 id="互联网层"><a href="#互联网层" class="headerlink" title="互联网层"></a>互联网层</h4><h4 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h4><h3 id="TCP、UDP协议"><a href="#TCP、UDP协议" class="headerlink" title="TCP、UDP协议"></a>TCP、UDP协议</h3><h4 id="TCP固接连接为基础"><a href="#TCP固接连接为基础" class="headerlink" title="TCP固接连接为基础"></a>TCP固接连接为基础</h4><h5 id="socket类编程"><a href="#socket类编程" class="headerlink" title="socket类编程"></a>socket类编程</h5><h5 id="inteAddress类"><a href="#inteAddress类" class="headerlink" title="inteAddress类"></a>inteAddress类</h5><h5 id="ServerSocket类"><a href="#ServerSocket类" class="headerlink" title="ServerSocket类"></a>ServerSocket类</h5><h6 id="服务器套接字，等待来自网络上的请求"><a href="#服务器套接字，等待来自网络上的请求" class="headerlink" title="服务器套接字，等待来自网络上的请求"></a>服务器套接字，等待来自网络上的请求</h6><h5 id="聊天室"><a href="#聊天室" class="headerlink" title="聊天室"></a>聊天室</h5><h4 id="UDP无连接的通信协议"><a href="#UDP无连接的通信协议" class="headerlink" title="UDP无连接的通信协议"></a>UDP无连接的通信协议</h4><h5 id="发送端"><a href="#发送端" class="headerlink" title="发送端"></a>发送端</h5><h6 id="DatagramSocket创建套接字"><a href="#DatagramSocket创建套接字" class="headerlink" title="DatagramSocket创建套接字"></a>DatagramSocket创建套接字</h6><h6 id="DatagramPacket创建数据包"><a href="#DatagramPacket创建数据包" class="headerlink" title="DatagramPacket创建数据包"></a>DatagramPacket创建数据包</h6><h6 id="send"><a href="#send" class="headerlink" title="send"></a>send</h6><h5 id="接收端"><a href="#接收端" class="headerlink" title="接收端"></a>接收端</h5><h6 id="DatagramSocket创建套接字，接收端口"><a href="#DatagramSocket创建套接字，接收端口" class="headerlink" title="DatagramSocket创建套接字，接收端口"></a>DatagramSocket创建套接字，接收端口</h6><h6 id="DatagramPacket创建字节组，接收数据包"><a href="#DatagramPacket创建字节组，接收数据包" class="headerlink" title="DatagramPacket创建字节组，接收数据包"></a>DatagramPacket创建字节组，接收数据包</h6><h6 id="receive"><a href="#receive" class="headerlink" title="receive"></a>receive</h6><h5 id="不断广播，同组的主机可随时接收数据包"><a href="#不断广播，同组的主机可随时接收数据包" class="headerlink" title="不断广播，同组的主机可随时接收数据包"></a>不断广播，同组的主机可随时接收数据包</h5><h6 id="224-0-0-0-224-255-255-255"><a href="#224-0-0-0-224-255-255-255" class="headerlink" title="224.0.0.0~224.255.255.255"></a>224.0.0.0~224.255.255.255</h6><h3 id="端口、套接字"><a href="#端口、套接字" class="headerlink" title="端口、套接字"></a>端口、套接字</h3><h4 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h4><h5 id="提供多种服务"><a href="#提供多种服务" class="headerlink" title="提供多种服务"></a>提供多种服务</h5><h4 id="套接字Socket"><a href="#套接字Socket" class="headerlink" title="套接字Socket"></a>套接字Socket</h4><h5 id="将应用程序与端口连接起来"><a href="#将应用程序与端口连接起来" class="headerlink" title="将应用程序与端口连接起来"></a>将应用程序与端口连接起来</h5><h2 id="集合类"><a href="#集合类" class="headerlink" title="集合类"></a>集合类</h2><h3 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h3><h4 id="List集合"><a href="#List集合" class="headerlink" title="List集合"></a>List集合</h4><h5 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h5><h6 id="异步的-1"><a href="#异步的-1" class="headerlink" title="异步的"></a>异步的</h6><h6 id="动态数组"><a href="#动态数组" class="headerlink" title="动态数组"></a>动态数组</h6><h5 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h5><h5 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h5><h6 id="get"><a href="#get" class="headerlink" title="get"></a>get</h6><h6 id="set"><a href="#set" class="headerlink" title="set"></a>set</h6><h4 id="Set集合"><a href="#Set集合" class="headerlink" title="Set集合"></a>Set集合</h4><h5 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h5><h5 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h5><h5 id="元素不可重复"><a href="#元素不可重复" class="headerlink" title="元素不可重复"></a>元素不可重复</h5><h4 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h4><h5 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h5><h6 id="迭代器iterator"><a href="#迭代器iterator" class="headerlink" title="迭代器iterator()"></a>迭代器iterator()</h6><h5 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h5><h6 id="add"><a href="#add" class="headerlink" title="add"></a>add</h6><h5 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h5><h6 id="remove"><a href="#remove" class="headerlink" title="remove"></a>remove</h6><h5 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h5><h3 id="Map集合"><a href="#Map集合" class="headerlink" title="Map集合"></a>Map集合</h3><h4 id="Hashmap"><a href="#Hashmap" class="headerlink" title="Hashmap"></a>Hashmap</h4><h5 id="效率更高"><a href="#效率更高" class="headerlink" title="效率更高"></a>效率更高</h5><h5 id="hash表实现"><a href="#hash表实现" class="headerlink" title="hash表实现"></a>hash表实现</h5><h5 id="异步的，线程不安全"><a href="#异步的，线程不安全" class="headerlink" title="异步的，线程不安全"></a>异步的，线程不安全</h5><h5 id="可接受空值null"><a href="#可接受空值null" class="headerlink" title="可接受空值null"></a>可接受空值null</h5><h4 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h4><h5 id="存在映射顺序"><a href="#存在映射顺序" class="headerlink" title="存在映射顺序"></a>存在映射顺序</h5><h5 id="Map中的key对象有一定顺序"><a href="#Map中的key对象有一定顺序" class="headerlink" title="Map中的key对象有一定顺序"></a>Map中的key对象有一定顺序</h5><h5 id="顺序输出时转换为Treemap"><a href="#顺序输出时转换为Treemap" class="headerlink" title="顺序输出时转换为Treemap"></a>顺序输出时转换为Treemap</h5><h4 id="方法-2"><a href="#方法-2" class="headerlink" title="方法"></a>方法</h4><h5 id="put（key，value）添加"><a href="#put（key，value）添加" class="headerlink" title="put（key，value）添加"></a>put（key，value）添加</h5><h5 id="是否包含containsKey-key"><a href="#是否包含containsKey-key" class="headerlink" title="是否包含containsKey(key)"></a>是否包含containsKey(key)</h5><h5 id="get-key-返回指定可以的内容"><a href="#get-key-返回指定可以的内容" class="headerlink" title="get(key)返回指定可以的内容"></a>get(key)返回指定可以的内容</h5><h5 id="keyset返回所有key的set集合"><a href="#keyset返回所有key的set集合" class="headerlink" title="keyset返回所有key的set集合"></a>keyset返回所有key的set集合</h5><h5 id="values值对象的collection集合"><a href="#values值对象的collection集合" class="headerlink" title="values值对象的collection集合"></a>values值对象的collection集合</h5><h3 id="Dictionary类"><a href="#Dictionary类" class="headerlink" title="Dictionary类"></a>Dictionary类</h3><h4 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a>HashTable</h4><h5 id="同步的，保证线程安全"><a href="#同步的，保证线程安全" class="headerlink" title="同步的，保证线程安全"></a>同步的，保证线程安全</h5><h5 id="不能为空值"><a href="#不能为空值" class="headerlink" title="不能为空值"></a>不能为空值</h5><h3 id="Vector类"><a href="#Vector类" class="headerlink" title="Vector类"></a>Vector类</h3><h4 id="动态数组-1"><a href="#动态数组-1" class="headerlink" title="动态数组"></a>动态数组</h4><h4 id="同步的，线程安全的"><a href="#同步的，线程安全的" class="headerlink" title="同步的，线程安全的"></a>同步的，线程安全的</h4><h5 id="单独的方法操作上是安全的"><a href="#单独的方法操作上是安全的" class="headerlink" title="单独的方法操作上是安全的"></a>单独的方法操作上是安全的</h5><h5 id="方法都使用了synchronized修饰"><a href="#方法都使用了synchronized修饰" class="headerlink" title="方法都使用了synchronized修饰"></a>方法都使用了synchronized修饰</h5><h4 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h4><h4 id="底层实现与ArrayList类似"><a href="#底层实现与ArrayList类似" class="headerlink" title="底层实现与ArrayList类似"></a>底层实现与ArrayList类似</h4><h2 id="JVM相关"><a href="#JVM相关" class="headerlink" title="JVM相关"></a>JVM相关</h2><h3 id="内存分配"><a href="#内存分配" class="headerlink" title="内存分配"></a>内存分配</h3><h3 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h3><h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><h3 id="异常类"><a href="#异常类" class="headerlink" title="异常类"></a>异常类</h3><h4 id="当某个方法出现异常会创建一个异常对象"><a href="#当某个方法出现异常会创建一个异常对象" class="headerlink" title="当某个方法出现异常会创建一个异常对象"></a>当某个方法出现异常会创建一个异常对象</h4><h4 id="处理异常"><a href="#处理异常" class="headerlink" title="处理异常"></a>处理异常</h4><h5 id="当前方法中处理"><a href="#当前方法中处理" class="headerlink" title="当前方法中处理"></a>当前方法中处理</h5><h5 id="向上抛出异常"><a href="#向上抛出异常" class="headerlink" title="向上抛出异常"></a>向上抛出异常</h5><h4 id="捕捉异常"><a href="#捕捉异常" class="headerlink" title="捕捉异常"></a>捕捉异常</h4><h5 id="try-catch-Exceptiontype-e"><a href="#try-catch-Exceptiontype-e" class="headerlink" title="try{}catch(Exceptiontype e){}"></a>try{}catch(Exceptiontype e){}</h5><h5 id="try中有异常，则后面的不会执行"><a href="#try中有异常，则后面的不会执行" class="headerlink" title="try中有异常，则后面的不会执行"></a>try中有异常，则后面的不会执行</h5><h5 id="catch后面的继续执行"><a href="#catch后面的继续执行" class="headerlink" title="catch后面的继续执行"></a>catch后面的继续执行</h5><h4 id="自定义异常"><a href="#自定义异常" class="headerlink" title="自定义异常"></a>自定义异常</h4><h5 id="throw抛出异常"><a href="#throw抛出异常" class="headerlink" title="throw抛出异常"></a>throw抛出异常</h5><h5 id="throws抛出的错误信息"><a href="#throws抛出的错误信息" class="headerlink" title="throws抛出的错误信息"></a>throws抛出的错误信息</h5><h4 id="运行时异常"><a href="#运行时异常" class="headerlink" title="运行时异常"></a>运行时异常</h4><h5 id="每个包中都定义了异常类"><a href="#每个包中都定义了异常类" class="headerlink" title="每个包中都定义了异常类"></a>每个包中都定义了异常类</h5><h5 id="Throwable类的子类"><a href="#Throwable类的子类" class="headerlink" title="Throwable类的子类"></a>Throwable类的子类</h5><h4 id="常见异常"><a href="#常见异常" class="headerlink" title="常见异常"></a>常见异常</h4><h5 id="类型转换异常"><a href="#类型转换异常" class="headerlink" title="类型转换异常"></a>类型转换异常</h5><h5 id="未找到相应类异常‘’"><a href="#未找到相应类异常‘’" class="headerlink" title="未找到相应类异常‘’"></a>未找到相应类异常‘’</h5><h5 id="算数异常"><a href="#算数异常" class="headerlink" title="算数异常"></a>算数异常</h5><h5 id="数组下标越界异常"><a href="#数组下标越界异常" class="headerlink" title="数组下标越界异常"></a>数组下标越界异常</h5><h5 id="数组包含不兼容的值"><a href="#数组包含不兼容的值" class="headerlink" title="数组包含不兼容的值"></a>数组包含不兼容的值</h5><h5 id="操作数据库异常"><a href="#操作数据库异常" class="headerlink" title="操作数据库异常"></a>操作数据库异常</h5><h5 id="空指针异常"><a href="#空指针异常" class="headerlink" title="空指针异常"></a>空指针异常</h5><h5 id="字段未找到、方法未找到"><a href="#字段未找到、方法未找到" class="headerlink" title="字段未找到、方法未找到"></a>字段未找到、方法未找到</h5><h5 id="字符串转数字异常"><a href="#字符串转数字异常" class="headerlink" title="字符串转数字异常"></a>字符串转数字异常</h5><h5 id="数组元素个数为负数异常"><a href="#数组元素个数为负数异常" class="headerlink" title="数组元素个数为负数异常"></a>数组元素个数为负数异常</h5><h5 id="字符串索引异常"><a href="#字符串索引异常" class="headerlink" title="字符串索引异常"></a>字符串索引异常</h5><h5 id="IO异常"><a href="#IO异常" class="headerlink" title="IO异常"></a>IO异常</h5><h5 id="不允许访问某类异常"><a href="#不允许访问某类异常" class="headerlink" title="不允许访问某类异常"></a>不允许访问某类异常</h5><h5 id="newInstance创建实例，但类不允许实例化"><a href="#newInstance创建实例，但类不允许实例化" class="headerlink" title="newInstance创建实例，但类不允许实例化"></a>newInstance创建实例，但类不允许实例化</h5><h5 id="文件已结束、文件未找到异常"><a href="#文件已结束、文件未找到异常" class="headerlink" title="文件已结束、文件未找到异常"></a>文件已结束、文件未找到异常</h5><h2 id="枚举类型与泛型"><a href="#枚举类型与泛型" class="headerlink" title="枚举类型与泛型"></a>枚举类型与泛型</h2><h3 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h3><h4 id="将常量封装在类中或接口中，编译时检查"><a href="#将常量封装在类中或接口中，编译时检查" class="headerlink" title="将常量封装在类中或接口中，编译时检查"></a>将常量封装在类中或接口中，编译时检查</h4><h4 id="常量放在枚举类型中enum"><a href="#常量放在枚举类型中enum" class="headerlink" title="常量放在枚举类型中enum"></a>常量放在枚举类型中enum</h4><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><h5 id="类型安全"><a href="#类型安全" class="headerlink" title="类型安全"></a>类型安全</h5><h5 id="紧凑有效的数据定义"><a href="#紧凑有效的数据定义" class="headerlink" title="紧凑有效的数据定义"></a>紧凑有效的数据定义</h5><h5 id="可以和程序其他部分完美交互"><a href="#可以和程序其他部分完美交互" class="headerlink" title="可以和程序其他部分完美交互"></a>可以和程序其他部分完美交互</h5><h5 id="运行效率高"><a href="#运行效率高" class="headerlink" title="运行效率高"></a>运行效率高</h5><h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><h4 id="解决类型安全问题，提供编译时安全检查"><a href="#解决类型安全问题，提供编译时安全检查" class="headerlink" title="解决类型安全问题，提供编译时安全检查"></a>解决类型安全问题，提供编译时安全检查</h4><h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><h5 id="泛型的参数必须是类类型，不可以是简单类型"><a href="#泛型的参数必须是类类型，不可以是简单类型" class="headerlink" title="泛型的参数必须是类类型，不可以是简单类型"></a>泛型的参数必须是类类型，不可以是简单类型</h5><h5 id="参数可有多个"><a href="#参数可有多个" class="headerlink" title="参数可有多个"></a>参数可有多个</h5><h5 id="可使用extends限制泛型的类型"><a href="#可使用extends限制泛型的类型" class="headerlink" title="可使用extends限制泛型的类型"></a>可使用extends限制泛型的类型</h5><h5 id="可使用通配符限定泛型的类型"><a href="#可使用通配符限定泛型的类型" class="headerlink" title="可使用通配符限定泛型的类型"></a>可使用通配符限定泛型的类型</h5><h2 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h2><h3 id="字节输入输出流"><a href="#字节输入输出流" class="headerlink" title="字节输入输出流"></a>字节输入输出流</h3><h4 id="InputStream"><a href="#InputStream" class="headerlink" title="InputStream"></a>InputStream</h4><h4 id="字节输入流"><a href="#字节输入流" class="headerlink" title="字节输入流"></a>字节输入流</h4><h4 id="Reader类"><a href="#Reader类" class="headerlink" title="Reader类"></a>Reader类</h4><h4 id="FileReader"><a href="#FileReader" class="headerlink" title="FileReader"></a>FileReader</h4><h4 id="OutputStream"><a href="#OutputStream" class="headerlink" title="OutputStream"></a>OutputStream</h4><h4 id="Writer类"><a href="#Writer类" class="headerlink" title="Writer类"></a>Writer类</h4><h4 id="FileWriter"><a href="#FileWriter" class="headerlink" title="FileWriter"></a>FileWriter</h4><h3 id="文件输入输出流"><a href="#文件输入输出流" class="headerlink" title="文件输入输出流"></a>文件输入输出流</h3><h4 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h4><h5 id="获取文件基本信息"><a href="#获取文件基本信息" class="headerlink" title="获取文件基本信息"></a>获取文件基本信息</h5><h4 id="FileInputStream文件输入"><a href="#FileInputStream文件输入" class="headerlink" title="FileInputStream文件输入"></a>FileInputStream文件输入</h4><h4 id="FileoutputStream文件输出"><a href="#FileoutputStream文件输出" class="headerlink" title="FileoutputStream文件输出"></a>FileoutputStream文件输出</h4><h3 id="缓存区输入输出"><a href="#缓存区输入输出" class="headerlink" title="缓存区输入输出"></a>缓存区输入输出</h3><h4 id="BufferedInputStream"><a href="#BufferedInputStream" class="headerlink" title="BufferedInputStream"></a>BufferedInputStream</h4><h4 id="BufferedReader"><a href="#BufferedReader" class="headerlink" title="BufferedReader"></a>BufferedReader</h4><h4 id="BufferedOutputStream"><a href="#BufferedOutputStream" class="headerlink" title="BufferedOutputStream"></a>BufferedOutputStream</h4><h4 id="BufferedWriter"><a href="#BufferedWriter" class="headerlink" title="BufferedWriter"></a>BufferedWriter</h4><h4 id="缓存是IO的性能优化"><a href="#缓存是IO的性能优化" class="headerlink" title="缓存是IO的性能优化"></a>缓存是IO的性能优化</h4><h3 id="数据输入输出流"><a href="#数据输入输出流" class="headerlink" title="数据输入输出流"></a>数据输入输出流</h3><h4 id="DataInputStream"><a href="#DataInputStream" class="headerlink" title="DataInputStream"></a>DataInputStream</h4><h4 id="DataOutputStream"><a href="#DataOutputStream" class="headerlink" title="DataOutputStream"></a>DataOutputStream</h4><h4 id="不必关心数据类型"><a href="#不必关心数据类型" class="headerlink" title="不必关心数据类型"></a>不必关心数据类型</h4><h3 id="ZIP压缩输入输出流"><a href="#ZIP压缩输入输出流" class="headerlink" title="ZIP压缩输入输出流"></a>ZIP压缩输入输出流</h3><h4 id="ZipEntry类"><a href="#ZipEntry类" class="headerlink" title="ZipEntry类"></a>ZipEntry类</h4><h4 id="ZipInpuStream"><a href="#ZipInpuStream" class="headerlink" title="ZipInpuStream"></a>ZipInpuStream</h4><h4 id="ZipOutputStream"><a href="#ZipOutputStream" class="headerlink" title="ZipOutputStream"></a>ZipOutputStream</h4><h2 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h2><h3 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h3><h4 id="java-sql"><a href="#java-sql" class="headerlink" title="java.sql"></a>java.sql</h4><h4 id="connection接口"><a href="#connection接口" class="headerlink" title="connection接口"></a>connection接口</h4><h4 id="Statement接口"><a href="#Statement接口" class="headerlink" title="Statement接口"></a>Statement接口</h4><h4 id="preparedstatement"><a href="#preparedstatement" class="headerlink" title="preparedstatement"></a>preparedstatement</h4><h4 id="drivermanager"><a href="#drivermanager" class="headerlink" title="drivermanager"></a>drivermanager</h4><h4 id="resultset"><a href="#resultset" class="headerlink" title="resultset"></a>resultset</h4><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><h4 id="安全性控制"><a href="#安全性控制" class="headerlink" title="安全性控制"></a>安全性控制</h4><h4 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h4><h4 id="完整性控制"><a href="#完整性控制" class="headerlink" title="完整性控制"></a>完整性控制</h4><h4 id="故障的发现和恢复"><a href="#故障的发现和恢复" class="headerlink" title="故障的发现和恢复"></a>故障的发现和恢复</h4><h3 id="SQL语言"><a href="#SQL语言" class="headerlink" title="SQL语言"></a>SQL语言</h3><h4 id="数据定义"><a href="#数据定义" class="headerlink" title="数据定义"></a>数据定义</h4><h5 id="create、alter"><a href="#create、alter" class="headerlink" title="create、alter"></a>create、alter</h5><h4 id="数据操纵"><a href="#数据操纵" class="headerlink" title="数据操纵"></a>数据操纵</h4><h5 id="select、insert、"><a href="#select、insert、" class="headerlink" title="select、insert、"></a>select、insert、</h5><h4 id="数据控制"><a href="#数据控制" class="headerlink" title="数据控制"></a>数据控制</h4><h5 id="grant、revoke"><a href="#grant、revoke" class="headerlink" title="grant、revoke"></a>grant、revoke</h5><h4 id="事务控制"><a href="#事务控制" class="headerlink" title="事务控制"></a>事务控制</h4><h5 id="commit、rollback"><a href="#commit、rollback" class="headerlink" title="commit、rollback"></a>commit、rollback</h5>
+      
+    </div>
+
+	<div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/2019/08/28/Java-核心知识/">Java 核心知识</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Xiaxyun 的个人博客">Xiaxyun</a></p>
+  <p><span>发布时间:</span>2019年08月28日 - 19:08</p>
+  <p><span>最后更新:</span>2019年08月28日 - 19:08</p>
+  <p><span>原始链接:</span><a href="/2019/08/28/Java-核心知识/" title="Java 核心知识">https://xiaxyun.github.io/2019/08/28/Java-核心知识/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://xiaxyun.github.io/2019/08/28/Java-核心知识/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
+      
+	</div>
+
+    
+
+    
+
+    
+	<div>
+		
+		<div>
+  
+    <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+  
+</div>
+
+		
+	</div>
+    
+    
+    
+
+    
+    
+    
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+          
+            <a href="/tags/java核心/" rel="tag"><i class="fa fa-tag"></i> java核心</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/28/Java-必备知识/" rel="next" title="Java 必备知识">
+                <i class="fa fa-chevron-left"></i> Java 必备知识
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+    
+    
+    
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/about-me.jpg" alt="Xiaxyun">
+            
+              <p class="site-author-name" itemprop="name">Xiaxyun</p>
+              <p class="site-description motion-element" itemprop="description">欢迎来到我的博客小站~~</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/xiaxyun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/yourname" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/yourname" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+<div id="music163player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=458789090&auto=0&height=66"></iframe>
+</div>
+
+<div id="player1" class="aplayer"></div>
+<script src="/js/src/APlayer.min.js"></script>
+<script type="text/javascript">
+  var ap = new APlayer({
+    element: document.getElementById('player1'),                       // Optional, player element
+    narrow: false,                                                     // Optional, narrow style
+    autoplay: true,                                                    // Optional, autoplay song(s), not supported by mobile browsers
+    showlrc: true,                                                        // Optional, show lrc, can be 0, 1, 2, see: ###With lrc
+    mutex: true,                                                       // Optional, pause other players when this player playing
+    listFolded: False,
+    theme: '#e6d0b2',                                                  // Optional, theme color, default: #b7daff
+    mode: 'random',                                                    // Optional, play mode, can be `random` `single` `circulation`(loop) `order`(no loop), default: `circulation`
+    preload: 'metadata',                                               // Optional, the way to load music, can be 'none' 'metadata' 'auto', default: 'auto'
+    listmaxheight: '80px',                                             // Optional, max height of play list
+    music: [{                                                           // Required, music info, see: ###With playlist
+      title: '你曾是少年',                                          // Required, music title
+      author: 'cover',                                              // Required, music author
+      url: 'http://mp3.qqmusic.cc/yq/102426570.mp3',                // Required, music url
+      pic: '/images/visitor.jpg',                                   // Optional, music picture
+    },{
+      title: '遇见',
+      author: '孙燕姿',
+      url: 'http://music.163.com/song/media/outer/url?id=287035.mp3',
+      pic: 'http://y.gtimg.cn/music/photo_new/T002R300x300M000002ehzTm0TxXC2.jpg'
+    }
+    ]
+  });
+  ap.init();
+</script>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java核心"><span class="nav-number">1.</span> <span class="nav-text">Java核心</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程"><span class="nav-number">1.1.</span> <span class="nav-text">多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#并发、多线程机制：程序同时完成多件事情"><span class="nav-number">1.1.1.</span> <span class="nav-text">并发、多线程机制：程序同时完成多件事情</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Thread类继承方式使用"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Thread类继承方式使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Runnable接口使用"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">Runnable接口使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程的生命周期"><span class="nav-number">1.1.2.</span> <span class="nav-text">线程的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#出生"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">出生</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建new-Thread-）"><span class="nav-number">1.1.2.1.1.</span> <span class="nav-text">创建new Thread(）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#就绪"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">就绪</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#t-start"><span class="nav-number">1.1.2.2.1.</span> <span class="nav-text">t.start()</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">运行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#等待"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">等待</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#休眠"><span class="nav-number">1.1.2.5.</span> <span class="nav-text">休眠</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#阻塞"><span class="nav-number">1.1.2.6.</span> <span class="nav-text">阻塞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#死亡"><span class="nav-number">1.1.2.7.</span> <span class="nav-text">死亡</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程同步"><span class="nav-number">1.1.3.</span> <span class="nav-text">线程同步</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#线程安全"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">线程安全</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#HashMap线程不安全"><span class="nav-number">1.1.3.1.1.</span> <span class="nav-text">HashMap线程不安全</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#currentHashmap可解决"><span class="nav-number">1.1.3.1.1.1.</span> <span class="nav-text">currentHashmap可解决</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#异步的"><span class="nav-number">1.1.3.1.1.2.</span> <span class="nav-text">异步的</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HashTable线程安全"><span class="nav-number">1.1.3.1.2.</span> <span class="nav-text">HashTable线程安全</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#同步的"><span class="nav-number">1.1.3.1.2.1.</span> <span class="nav-text">同步的</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程同步机制"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">线程同步机制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#同步块"><span class="nav-number">1.1.3.2.1.</span> <span class="nav-text">同步块</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#synchronized-object-访问资源的代码块"><span class="nav-number">1.1.3.2.1.1.</span> <span class="nav-text">synchronized(object){    //访问资源的代码块}</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#同步方法"><span class="nav-number">1.1.3.2.2.</span> <span class="nav-text">同步方法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#在方法前加上修饰synchronized-void-份（）-访问资源的代码"><span class="nav-number">1.1.3.2.2.1.</span> <span class="nav-text">在方法前加上修饰synchronized void 份（）{//访问资源的代码}</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络编程"><span class="nav-number">1.2.</span> <span class="nav-text">网络编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-IP协议"><span class="nav-number">1.2.1.</span> <span class="nav-text">TCP/IP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#应用层"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">应用层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#传输层"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">传输层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#互联网层"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">互联网层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络层"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">网络层</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP、UDP协议"><span class="nav-number">1.2.2.</span> <span class="nav-text">TCP、UDP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP固接连接为基础"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">TCP固接连接为基础</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#socket类编程"><span class="nav-number">1.2.2.1.1.</span> <span class="nav-text">socket类编程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#inteAddress类"><span class="nav-number">1.2.2.1.2.</span> <span class="nav-text">inteAddress类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ServerSocket类"><span class="nav-number">1.2.2.1.3.</span> <span class="nav-text">ServerSocket类</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#服务器套接字，等待来自网络上的请求"><span class="nav-number">1.2.2.1.3.1.</span> <span class="nav-text">服务器套接字，等待来自网络上的请求</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#聊天室"><span class="nav-number">1.2.2.1.4.</span> <span class="nav-text">聊天室</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UDP无连接的通信协议"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">UDP无连接的通信协议</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#发送端"><span class="nav-number">1.2.2.2.1.</span> <span class="nav-text">发送端</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#DatagramSocket创建套接字"><span class="nav-number">1.2.2.2.1.1.</span> <span class="nav-text">DatagramSocket创建套接字</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#DatagramPacket创建数据包"><span class="nav-number">1.2.2.2.1.2.</span> <span class="nav-text">DatagramPacket创建数据包</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#send"><span class="nav-number">1.2.2.2.1.3.</span> <span class="nav-text">send</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#接收端"><span class="nav-number">1.2.2.2.2.</span> <span class="nav-text">接收端</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#DatagramSocket创建套接字，接收端口"><span class="nav-number">1.2.2.2.2.1.</span> <span class="nav-text">DatagramSocket创建套接字，接收端口</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#DatagramPacket创建字节组，接收数据包"><span class="nav-number">1.2.2.2.2.2.</span> <span class="nav-text">DatagramPacket创建字节组，接收数据包</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#receive"><span class="nav-number">1.2.2.2.2.3.</span> <span class="nav-text">receive</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#不断广播，同组的主机可随时接收数据包"><span class="nav-number">1.2.2.2.3.</span> <span class="nav-text">不断广播，同组的主机可随时接收数据包</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#224-0-0-0-224-255-255-255"><span class="nav-number">1.2.2.2.3.1.</span> <span class="nav-text">224.0.0.0~224.255.255.255</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#端口、套接字"><span class="nav-number">1.2.3.</span> <span class="nav-text">端口、套接字</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#端口"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">端口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#提供多种服务"><span class="nav-number">1.2.3.1.1.</span> <span class="nav-text">提供多种服务</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#套接字Socket"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">套接字Socket</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#将应用程序与端口连接起来"><span class="nav-number">1.2.3.2.1.</span> <span class="nav-text">将应用程序与端口连接起来</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合类"><span class="nav-number">1.3.</span> <span class="nav-text">集合类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Collection"><span class="nav-number">1.3.1.</span> <span class="nav-text">Collection</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#List集合"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">List集合</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ArrayList"><span class="nav-number">1.3.1.1.1.</span> <span class="nav-text">ArrayList</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#异步的-1"><span class="nav-number">1.3.1.1.1.1.</span> <span class="nav-text">异步的</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#动态数组"><span class="nav-number">1.3.1.1.1.2.</span> <span class="nav-text">动态数组</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LinkedList"><span class="nav-number">1.3.1.1.2.</span> <span class="nav-text">LinkedList</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方法"><span class="nav-number">1.3.1.1.3.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#get"><span class="nav-number">1.3.1.1.3.1.</span> <span class="nav-text">get</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#set"><span class="nav-number">1.3.1.1.3.2.</span> <span class="nav-text">set</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Set集合"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">Set集合</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#HashSet"><span class="nav-number">1.3.1.2.1.</span> <span class="nav-text">HashSet</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#TreeSet"><span class="nav-number">1.3.1.2.2.</span> <span class="nav-text">TreeSet</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#元素不可重复"><span class="nav-number">1.3.1.2.3.</span> <span class="nav-text">元素不可重复</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法-1"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#遍历"><span class="nav-number">1.3.1.3.1.</span> <span class="nav-text">遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#迭代器iterator"><span class="nav-number">1.3.1.3.1.1.</span> <span class="nav-text">迭代器iterator()</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#添加"><span class="nav-number">1.3.1.3.2.</span> <span class="nav-text">添加</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#add"><span class="nav-number">1.3.1.3.2.1.</span> <span class="nav-text">add</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除"><span class="nav-number">1.3.1.3.3.</span> <span class="nav-text">删除</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#remove"><span class="nav-number">1.3.1.3.3.1.</span> <span class="nav-text">remove</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查找"><span class="nav-number">1.3.1.3.4.</span> <span class="nav-text">查找</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map集合"><span class="nav-number">1.3.2.</span> <span class="nav-text">Map集合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hashmap"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">Hashmap</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#效率更高"><span class="nav-number">1.3.2.1.1.</span> <span class="nav-text">效率更高</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#hash表实现"><span class="nav-number">1.3.2.1.2.</span> <span class="nav-text">hash表实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异步的，线程不安全"><span class="nav-number">1.3.2.1.3.</span> <span class="nav-text">异步的，线程不安全</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可接受空值null"><span class="nav-number">1.3.2.1.4.</span> <span class="nav-text">可接受空值null</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TreeMap"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">TreeMap</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#存在映射顺序"><span class="nav-number">1.3.2.2.1.</span> <span class="nav-text">存在映射顺序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Map中的key对象有一定顺序"><span class="nav-number">1.3.2.2.2.</span> <span class="nav-text">Map中的key对象有一定顺序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#顺序输出时转换为Treemap"><span class="nav-number">1.3.2.2.3.</span> <span class="nav-text">顺序输出时转换为Treemap</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法-2"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#put（key，value）添加"><span class="nav-number">1.3.2.3.1.</span> <span class="nav-text">put（key，value）添加</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#是否包含containsKey-key"><span class="nav-number">1.3.2.3.2.</span> <span class="nav-text">是否包含containsKey(key)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#get-key-返回指定可以的内容"><span class="nav-number">1.3.2.3.3.</span> <span class="nav-text">get(key)返回指定可以的内容</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#keyset返回所有key的set集合"><span class="nav-number">1.3.2.3.4.</span> <span class="nav-text">keyset返回所有key的set集合</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#values值对象的collection集合"><span class="nav-number">1.3.2.3.5.</span> <span class="nav-text">values值对象的collection集合</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dictionary类"><span class="nav-number">1.3.3.</span> <span class="nav-text">Dictionary类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HashTable"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">HashTable</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#同步的，保证线程安全"><span class="nav-number">1.3.3.1.1.</span> <span class="nav-text">同步的，保证线程安全</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#不能为空值"><span class="nav-number">1.3.3.1.2.</span> <span class="nav-text">不能为空值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vector类"><span class="nav-number">1.3.4.</span> <span class="nav-text">Vector类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#动态数组-1"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">动态数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同步的，线程安全的"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">同步的，线程安全的</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#单独的方法操作上是安全的"><span class="nav-number">1.3.4.2.1.</span> <span class="nav-text">单独的方法操作上是安全的</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方法都使用了synchronized修饰"><span class="nav-number">1.3.4.2.2.</span> <span class="nav-text">方法都使用了synchronized修饰</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#序列化"><span class="nav-number">1.3.4.3.</span> <span class="nav-text">序列化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#底层实现与ArrayList类似"><span class="nav-number">1.3.4.4.</span> <span class="nav-text">底层实现与ArrayList类似</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM相关"><span class="nav-number">1.4.</span> <span class="nav-text">JVM相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内存分配"><span class="nav-number">1.4.1.</span> <span class="nav-text">内存分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾回收机制"><span class="nav-number">1.4.2.</span> <span class="nav-text">垃圾回收机制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常处理"><span class="nav-number">1.5.</span> <span class="nav-text">异常处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异常类"><span class="nav-number">1.5.1.</span> <span class="nav-text">异常类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#当某个方法出现异常会创建一个异常对象"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">当某个方法出现异常会创建一个异常对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理异常"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">处理异常</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#当前方法中处理"><span class="nav-number">1.5.1.2.1.</span> <span class="nav-text">当前方法中处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#向上抛出异常"><span class="nav-number">1.5.1.2.2.</span> <span class="nav-text">向上抛出异常</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#捕捉异常"><span class="nav-number">1.5.1.3.</span> <span class="nav-text">捕捉异常</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#try-catch-Exceptiontype-e"><span class="nav-number">1.5.1.3.1.</span> <span class="nav-text">try{}catch(Exceptiontype e){}</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#try中有异常，则后面的不会执行"><span class="nav-number">1.5.1.3.2.</span> <span class="nav-text">try中有异常，则后面的不会执行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#catch后面的继续执行"><span class="nav-number">1.5.1.3.3.</span> <span class="nav-text">catch后面的继续执行</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义异常"><span class="nav-number">1.5.1.4.</span> <span class="nav-text">自定义异常</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#throw抛出异常"><span class="nav-number">1.5.1.4.1.</span> <span class="nav-text">throw抛出异常</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#throws抛出的错误信息"><span class="nav-number">1.5.1.4.2.</span> <span class="nav-text">throws抛出的错误信息</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行时异常"><span class="nav-number">1.5.1.5.</span> <span class="nav-text">运行时异常</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#每个包中都定义了异常类"><span class="nav-number">1.5.1.5.1.</span> <span class="nav-text">每个包中都定义了异常类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Throwable类的子类"><span class="nav-number">1.5.1.5.2.</span> <span class="nav-text">Throwable类的子类</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见异常"><span class="nav-number">1.5.1.6.</span> <span class="nav-text">常见异常</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#类型转换异常"><span class="nav-number">1.5.1.6.1.</span> <span class="nav-text">类型转换异常</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#未找到相应类异常‘’"><span class="nav-number">1.5.1.6.2.</span> <span class="nav-text">未找到相应类异常‘’</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#算数异常"><span class="nav-number">1.5.1.6.3.</span> <span class="nav-text">算数异常</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数组下标越界异常"><span class="nav-number">1.5.1.6.4.</span> <span class="nav-text">数组下标越界异常</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数组包含不兼容的值"><span class="nav-number">1.5.1.6.5.</span> <span class="nav-text">数组包含不兼容的值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#操作数据库异常"><span class="nav-number">1.5.1.6.6.</span> <span class="nav-text">操作数据库异常</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#空指针异常"><span class="nav-number">1.5.1.6.7.</span> <span class="nav-text">空指针异常</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#字段未找到、方法未找到"><span class="nav-number">1.5.1.6.8.</span> <span class="nav-text">字段未找到、方法未找到</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#字符串转数字异常"><span class="nav-number">1.5.1.6.9.</span> <span class="nav-text">字符串转数字异常</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数组元素个数为负数异常"><span class="nav-number">1.5.1.6.10.</span> <span class="nav-text">数组元素个数为负数异常</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#字符串索引异常"><span class="nav-number">1.5.1.6.11.</span> <span class="nav-text">字符串索引异常</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#IO异常"><span class="nav-number">1.5.1.6.12.</span> <span class="nav-text">IO异常</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#不允许访问某类异常"><span class="nav-number">1.5.1.6.13.</span> <span class="nav-text">不允许访问某类异常</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#newInstance创建实例，但类不允许实例化"><span class="nav-number">1.5.1.6.14.</span> <span class="nav-text">newInstance创建实例，但类不允许实例化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#文件已结束、文件未找到异常"><span class="nav-number">1.5.1.6.15.</span> <span class="nav-text">文件已结束、文件未找到异常</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#枚举类型与泛型"><span class="nav-number">1.6.</span> <span class="nav-text">枚举类型与泛型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#枚举类型"><span class="nav-number">1.6.1.</span> <span class="nav-text">枚举类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将常量封装在类中或接口中，编译时检查"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">将常量封装在类中或接口中，编译时检查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常量放在枚举类型中enum"><span class="nav-number">1.6.1.2.</span> <span class="nav-text">常量放在枚举类型中enum</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优点"><span class="nav-number">1.6.1.3.</span> <span class="nav-text">优点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#类型安全"><span class="nav-number">1.6.1.3.1.</span> <span class="nav-text">类型安全</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#紧凑有效的数据定义"><span class="nav-number">1.6.1.3.2.</span> <span class="nav-text">紧凑有效的数据定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可以和程序其他部分完美交互"><span class="nav-number">1.6.1.3.3.</span> <span class="nav-text">可以和程序其他部分完美交互</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#运行效率高"><span class="nav-number">1.6.1.3.4.</span> <span class="nav-text">运行效率高</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型"><span class="nav-number">1.6.2.</span> <span class="nav-text">泛型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决类型安全问题，提供编译时安全检查"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">解决类型安全问题，提供编译时安全检查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#泛型的参数必须是类类型，不可以是简单类型"><span class="nav-number">1.6.2.2.1.</span> <span class="nav-text">泛型的参数必须是类类型，不可以是简单类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数可有多个"><span class="nav-number">1.6.2.2.2.</span> <span class="nav-text">参数可有多个</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可使用extends限制泛型的类型"><span class="nav-number">1.6.2.2.3.</span> <span class="nav-text">可使用extends限制泛型的类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可使用通配符限定泛型的类型"><span class="nav-number">1.6.2.2.4.</span> <span class="nav-text">可使用通配符限定泛型的类型</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出"><span class="nav-number">1.7.</span> <span class="nav-text">输入输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字节输入输出流"><span class="nav-number">1.7.1.</span> <span class="nav-text">字节输入输出流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#InputStream"><span class="nav-number">1.7.1.1.</span> <span class="nav-text">InputStream</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字节输入流"><span class="nav-number">1.7.1.2.</span> <span class="nav-text">字节输入流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Reader类"><span class="nav-number">1.7.1.3.</span> <span class="nav-text">Reader类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FileReader"><span class="nav-number">1.7.1.4.</span> <span class="nav-text">FileReader</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OutputStream"><span class="nav-number">1.7.1.5.</span> <span class="nav-text">OutputStream</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Writer类"><span class="nav-number">1.7.1.6.</span> <span class="nav-text">Writer类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FileWriter"><span class="nav-number">1.7.1.7.</span> <span class="nav-text">FileWriter</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件输入输出流"><span class="nav-number">1.7.2.</span> <span class="nav-text">文件输入输出流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#File类"><span class="nav-number">1.7.2.1.</span> <span class="nav-text">File类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#获取文件基本信息"><span class="nav-number">1.7.2.1.1.</span> <span class="nav-text">获取文件基本信息</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FileInputStream文件输入"><span class="nav-number">1.7.2.2.</span> <span class="nav-text">FileInputStream文件输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FileoutputStream文件输出"><span class="nav-number">1.7.2.3.</span> <span class="nav-text">FileoutputStream文件输出</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存区输入输出"><span class="nav-number">1.7.3.</span> <span class="nav-text">缓存区输入输出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#BufferedInputStream"><span class="nav-number">1.7.3.1.</span> <span class="nav-text">BufferedInputStream</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BufferedReader"><span class="nav-number">1.7.3.2.</span> <span class="nav-text">BufferedReader</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BufferedOutputStream"><span class="nav-number">1.7.3.3.</span> <span class="nav-text">BufferedOutputStream</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BufferedWriter"><span class="nav-number">1.7.3.4.</span> <span class="nav-text">BufferedWriter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缓存是IO的性能优化"><span class="nav-number">1.7.3.5.</span> <span class="nav-text">缓存是IO的性能优化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据输入输出流"><span class="nav-number">1.7.4.</span> <span class="nav-text">数据输入输出流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DataInputStream"><span class="nav-number">1.7.4.1.</span> <span class="nav-text">DataInputStream</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DataOutputStream"><span class="nav-number">1.7.4.2.</span> <span class="nav-text">DataOutputStream</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不必关心数据类型"><span class="nav-number">1.7.4.3.</span> <span class="nav-text">不必关心数据类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZIP压缩输入输出流"><span class="nav-number">1.7.5.</span> <span class="nav-text">ZIP压缩输入输出流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ZipEntry类"><span class="nav-number">1.7.5.1.</span> <span class="nav-text">ZipEntry类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ZipInpuStream"><span class="nav-number">1.7.5.2.</span> <span class="nav-text">ZipInpuStream</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ZipOutputStream"><span class="nav-number">1.7.5.3.</span> <span class="nav-text">ZipOutputStream</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库操作"><span class="nav-number">1.8.</span> <span class="nav-text">数据库操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JDBC"><span class="nav-number">1.8.1.</span> <span class="nav-text">JDBC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#java-sql"><span class="nav-number">1.8.1.1.</span> <span class="nav-text">java.sql</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#connection接口"><span class="nav-number">1.8.1.2.</span> <span class="nav-text">connection接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Statement接口"><span class="nav-number">1.8.1.3.</span> <span class="nav-text">Statement接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#preparedstatement"><span class="nav-number">1.8.1.4.</span> <span class="nav-text">preparedstatement</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#drivermanager"><span class="nav-number">1.8.1.5.</span> <span class="nav-text">drivermanager</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#resultset"><span class="nav-number">1.8.1.6.</span> <span class="nav-text">resultset</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">1.8.2.</span> <span class="nav-text">特点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安全性控制"><span class="nav-number">1.8.2.1.</span> <span class="nav-text">安全性控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并发控制"><span class="nav-number">1.8.2.2.</span> <span class="nav-text">并发控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完整性控制"><span class="nav-number">1.8.2.3.</span> <span class="nav-text">完整性控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#故障的发现和恢复"><span class="nav-number">1.8.2.4.</span> <span class="nav-text">故障的发现和恢复</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL语言"><span class="nav-number">1.8.3.</span> <span class="nav-text">SQL语言</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据定义"><span class="nav-number">1.8.3.1.</span> <span class="nav-text">数据定义</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#create、alter"><span class="nav-number">1.8.3.1.1.</span> <span class="nav-text">create、alter</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据操纵"><span class="nav-number">1.8.3.2.</span> <span class="nav-text">数据操纵</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#select、insert、"><span class="nav-number">1.8.3.2.1.</span> <span class="nav-text">select、insert、</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据控制"><span class="nav-number">1.8.3.3.</span> <span class="nav-text">数据控制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#grant、revoke"><span class="nav-number">1.8.3.3.1.</span> <span class="nav-text">grant、revoke</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务控制"><span class="nav-number">1.8.3.4.</span> <span class="nav-text">事务控制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#commit、rollback"><span class="nav-number">1.8.3.4.1.</span> <span class="nav-text">commit、rollback</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiaxyun</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">2.2k</span>
+  
+</div>
+
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  <div class="powered-by">
+    <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+  </div>
+
+
+
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://xiaxyun.github.io/2019/08/28/Java-核心知识/';
+          this.page.identifier = '2019/08/28/Java-核心知识/';
+          this.page.title = 'Java 核心知识';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":false,"react":{"opacityDefault":0.5,"opacityOnHover":0}},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
