@@ -366,6 +366,436 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiaxyun.github.io/2017/12/19/为博客添加-Gitalk-评论插件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaxyun">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/about-me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xiaxyun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/19/为博客添加-Gitalk-评论插件/" itemprop="url">为博客添加 Gitalk 评论插件</a></h1>
+        
+
+        <div class="post-meta">
+			
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于&#58;</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-19T00:00:00+08:00">
+                2017-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/19/为博客添加-Gitalk-评论插件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/12/19/为博客添加-Gitalk-评论插件/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  842字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于 <strong>Disqus</strong> 对于国内网路的支持十分糟糕，很多人反映 Disqus 评论插件一直加载不出来。而我一直是处于翻墙状态的~（话说你们做程序员的都不翻墙用Google的吗😅，哈哈，吐嘈下）</p>
+<p>针对这个问题，我添加了<a href="https://github.com/gitalk/gitalk" target="_blank" rel="noopener">Gitalk</a> 评论插件。在此，非常感谢 <a href="https://github.com/FeDemo" target="_blank" rel="noopener">@FeDemo</a> 的推荐 。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="Gitalk-评论插件"><a href="#Gitalk-评论插件" class="headerlink" title="Gitalk 评论插件"></a>Gitalk 评论插件</h3><p>首先来看看 Gitalk 的界面和功能：</p>
+<p><a href="https://gitalk.github.io/" target="_blank" rel="noopener"><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fmm4u3j0lmj30nk0kl40i.jpg" alt></a></p>
+<p>gitalk 使用 Github 帐号登录，界面干净整洁，最喜欢的一点是支持 <code>MarkDown语法</code>。</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>Gitalk 是一个利用 Github API,基于 Github issue 和 Preact 开发的评论插件，在 Gitalk 之前还有一个 <a href="https://github.com/imsun/gitment" target="_blank" rel="noopener">gitment</a> 插件也是基于这个原理开发的,不过 gitment 已经很久没人维护了。</p>
+<p>可以看到在 gitalk 的评论框进行评论时，其实就是在对应的 issue 上提问题。</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fmm5916av1j30i209rab7.jpg" alt="gitalk评论框"></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fmm596ggkfj30mx0gfjuk.jpg" alt="Github issue"></p>
+<h3 id="集成-Gitalk"><a href="#集成-Gitalk" class="headerlink" title="集成 Gitalk"></a>集成 Gitalk</h3><p>到这里，你应该对 Gitalk 有个大致的了解了，现在，开始集成 gitalk 插件吧。</p>
+<p>将这段代码插入到你的网站：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Gitalk 评论 start  --&gt;</span><br><span class="line">&#123;% <span class="keyword">if</span> site.gitalk.enable %&#125;</span><br><span class="line">&lt;!-- Link Gitalk 的支持文件  --&gt;</span><br><span class="line">&lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"https://unpkg.com/gitalk/dist/gitalk.css"</span>&gt;</span><br><span class="line">&lt;script src=<span class="string">"https://unpkg.com/gitalk@latest/dist/gitalk.min.js"</span>&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;div id=<span class="string">"gitalk-container"</span>&gt;&lt;/div&gt;</span><br><span class="line">    &lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    <span class="keyword">var</span> gitalk = <span class="keyword">new</span> Gitalk(&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// gitalk的主要参数</span></span><br><span class="line">		clientID: <span class="string">`Github Application clientID`</span>,</span><br><span class="line">		clientSecret: <span class="string">`Github Application clientSecret`</span>,</span><br><span class="line">		repo: <span class="string">`存储你评论 issue 的 Github 仓库名`</span>,</span><br><span class="line">		owner: <span class="string">'Github 用户名'</span>,</span><br><span class="line">		admin: [<span class="string">'Github 用户名'</span>],</span><br><span class="line">		id: <span class="string">'页面的唯一标识，gitalk会根据这个标识自动创建的issue的标签'</span>,</span><br><span class="line">    </span><br><span class="line">    &#125;);</span><br><span class="line">    gitalk.render(<span class="string">'gitalk-container'</span>);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&#123;% endif %&#125;</span></span><br><span class="line"><span class="regexp">&lt;!-- Gitalk end --&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我们需要关心的就是配置下面几个参数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">clientID: <span class="string">`Github Application clientID`</span>,</span><br><span class="line">clientSecret: <span class="string">`Github Application clientSecret`</span>,</span><br><span class="line">repo: <span class="string">`Github 仓库名`</span>,<span class="comment">//存储你评论 issue 的 Github 仓库名（建议直接用 GitHub Page 的仓库名）</span></span><br><span class="line">owner: <span class="string">'Github 用户名'</span>,</span><br><span class="line">admin: [<span class="string">'Github 用户名'</span>], <span class="comment">//这个仓库的管理员，可以有多个，用数组表示，一般写自己,</span></span><br><span class="line">id: <span class="string">'window.location.pathname'</span>, <span class="comment">//页面的唯一标识，gitalk 会根据这个标识自动创建的issue的标签,我们使用页面的相对路径作为标识</span></span><br></pre></td></tr></table></figure>
+<p>当然，还有其他很多参数，有兴趣的话可以 <a href="https://github.com/gitalk/gitalk#options" target="_blank" rel="noopener"> 点这里</a>。</p>
+<p>比如我就增加了这个全屏遮罩的参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">distractionFreeMode: true,</span><br></pre></td></tr></table></figure>
+<h3 id="创建-Github-Application"><a href="#创建-Github-Application" class="headerlink" title="创建 Github Application"></a>创建 Github Application</h3><p>Gitalk 需要一个 <strong>Github Application</strong>，<a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">点击这里申请</a>。</p>
+<p>填写下面参数：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fmm7jaib6fj30jo0gaacs.jpg" alt></p>
+<p>点击创建</p>
+<p>获取 <code>Client ID</code> 和 <code>Client Secret</code> 填入你的我们 Gitalk 参数中</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fmm7jrzff6j30lc0budhp.jpg" alt></p>
+<p>当你参数都设置好，将代码推送到 Github 仓库后，没什么问题的话，当你点击进入你的博客页面后就会出现评论框了。</p>
+<p>当你用 github 帐号登录（管理员），并且第一次加载该会比较慢，因为第一次加载会自动在你 <code>repo</code> 的仓库下创建对应 issue。</p>
+<p>比如说这样：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fmm867n88cj30l809mjse.jpg" alt></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fmm8a0i0jkj30rr0ct42t.jpg" alt></p>
+<p>当然，你也可以手动创建issue作为 gitalk评论容器。只要有 <code>Gitalk</code> 标签 和 <code>id</code> 对应标签就可以。比我我自己创建的 <a href="https://github.com/qiubaiying/qiubaiying.github.io/issues/38" target="_blank" rel="noopener">About issue</a> 。</p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>最后说几句吐嘈几句， Gitalk 需要你点开每篇文章的页面才会创建对应的 issue,对我来说真是个糟糕的体验（文章有点多~）。</p>
+<p>当然，也有解决办法，这篇 <a href="https://draveness.me/git-comments-initialize" target="_blank" rel="noopener">自动初始化 Gitalk 和 Gitment 评论</a>，就解决了这个问题。</p>
+<p>最后，<a href="https://github.com/qiubaiying/qiubaiying.github.io" target="_blank" rel="noopener">给个 star 吧</a>~</p>
+
+          
+        
+      
+    </div>
+
+	<div>
+      
+	</div>
+
+    
+
+    
+
+    
+	<div>
+		
+	</div>
+    
+    
+    
+
+    
+    
+    
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+    
+    
+    
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiaxyun.github.io/2017/07/10/「体能训练理论」之金字塔/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaxyun">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/about-me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xiaxyun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/10/「体能训练理论」之金字塔/" itemprop="url">「体能训练理论」之金字塔</a></h1>
+        
+
+        <div class="post-meta">
+			
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于&#58;</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-10T00:00:00+08:00">
+                2017-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/10/「体能训练理论」之金字塔/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/07/10/「体能训练理论」之金字塔/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.3k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>体能，人体基础运动能力的统称，人体的本质属性，它支撑着日常生活工作的需要，也支撑着运动技战术的表现。 体能思路，是指导我们设计实施体能训练的思维方式，分析逻辑。它包括回归原点的 <strong>五大运动素质</strong> &amp; <a href="http://qiubaiying.top/2017/07/10/%E4%BD%93%E8%83%BD%E8%AE%AD%E7%BB%83%E7%90%86%E8%AE%BA-%E4%B9%8B%E5%8A%A8%E5%8A%9B%E9%93%BE/" target="_blank" rel="noopener"><strong>动力链理论</strong></a>，也包括在过程中引领方向的 <a href="http://qiubaiying.top/2017/07/10/%E4%BD%93%E8%83%BD%E8%AE%AD%E7%BB%83%E7%90%86%E8%AE%BA-%E4%B9%8B%E5%8A%9F%E8%83%BD%E6%80%A7/" target="_blank" rel="noopener"><strong>功能性原则</strong></a> 和 <a href="http://qiubaiying.top/2017/07/10/%E4%BD%93%E8%83%BD%E8%AE%AD%E7%BB%83%E7%90%86%E8%AE%BA-%E4%B9%8B%E9%87%91%E5%AD%97%E5%A1%94/" target="_blank" rel="noopener"><strong>金字塔</strong></a> 。</p>
+<h2 id="金字塔"><a href="#金字塔" class="headerlink" title="金字塔"></a>金字塔</h2><p>体能训练是一门实践科学，实践先于理论，而理论印证实践。体能训练有四大基础学科，分别是运动解剖学、运动生理学、运动生物力学和运动训练学。</p>
+<p>五大运动素质对应生理学和运动训练学；动力链对应解剖学和运动生物力学；功能性对应着生理和生物力。而金字塔则对应了它们全部！或者说金字塔其实是诸学科在体能训练中的交汇，它囊括了所有之前的理论，并且赋予了更深层的意义。</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fhg20ydk8uj30go0brwh1.jpg" alt></p>
+<p>金字塔代表了人体运动能力发展的客观规律，它是一个流程的引领，思维的分级，以及训练阶段的划分。</p>
+<p>这里包括 <strong>关节功能+核心控制</strong>、<strong>基础动作模式</strong>、<strong>基础力量</strong>、<strong>综合体能</strong>、<strong>专项运动</strong>。他们在逻辑上互为基础和进阶，关节是动作的基础，动作承载力量，力量支撑各个运动素质，而专项是各个运动素质在具体运动中的表现。</p>
+<p>也许这么说可能不能够让大家有清晰的认识，那么接下来我就把每层的内容和它们之间的逻辑关系简单的跟大家分享一下。 99%的运动者都是基础不足，上层过度。我们从基础开始，从下往上说起。</p>
+<h3 id="运动基础（关节功能-核心控制）"><a href="#运动基础（关节功能-核心控制）" class="headerlink" title="运动基础（关节功能 + 核心控制）"></a>运动基础（关节功能 + 核心控制）</h3><p>运动基础主要内容包括 <strong>关节功能</strong> 和 <strong>核心控制</strong> 能力。</p>
+<p>人体的关节功能有两个属性，一个是灵活性，一个是稳定性。举例来说，很多人由于长期缺乏锻炼，肩关节灵活性缺失，第一次学习竖直上举时，怎么努力都举不到头顶，显然应该先改善肩关节灵活性。再比如，膝关节的结构导致它只能进行屈伸的运动，所以我们要保证运动过程中不出现膝内扣，膝外翻的现象，也就是膝关节需要具备的稳定能力。在健身之前我们，应该先评估我们的关节功能。</p>
+<p>运动基础中的第二部分内容就是核心控制能力。很多健身者入门者都会觉得核心是腹肌，觉得练核心的目的是拥有一个好看的腹肌。实际上，腹肌只是核心的一部分，核心是指一个区域，我们的整个躯干都属于核心区域。</p>
+<p>运动的外在表现虽来源于四肢，比如跑步时你的四肢在运动，但是一个出色的外在运动表现是建立在稳定的核心基础之上的。如果躯干不稳定，在跑步的过程中整个脊柱很松散，甩来甩去，这样是很难提高跑步速度的。所以在学习动作之前，应该先加强核心控制能力。</p>
+<p>所以我们会推荐没有进行过抗阻训练、长期久坐的同学先去练习一段时间的瑜伽和普拉提，瑜伽可以很好地改善关节灵活性，进而提高身体的柔韧性；而普拉提能提高的核心控制能力，并提高关节稳定性。<br>一个合格的健身训练者，应该了解不同的训练体系，他要知道自身还缺乏什么，然后向不同的训练体系去借鉴，以提高自己。</p>
+<h3 id="基础动作模式"><a href="#基础动作模式" class="headerlink" title="基础动作模式"></a>基础动作模式</h3><h4 id="什么是基础动作模式？"><a href="#什么是基础动作模式？" class="headerlink" title="什么是基础动作模式？"></a>什么是基础动作模式？</h4><p>简单地说就是，所有动作肢体特有的运动程序。人体就这么些零件，所以很多的动作之间都存在着些许的共性，我们将这些共性提炼出来并进行功能上的抽象，那么就形成了我们现在所要说的基础动作模式——<strong>双腿蹲</strong>、<strong>单腿蹲</strong>、<strong>推</strong>、<strong>拉</strong>、<strong>旋转</strong>、<strong>屈髋</strong>。</p>
+<ul>
+<li><strong>蹲</strong>：分为单腿蹲、双腿蹲。对应的训练动作有剪蹲和深蹲。</li>
+<li><strong>推</strong>：分为水平推、竖直推。对应的训练动作是卧推和实力举。</li>
+<li><strong>拉</strong>：分为竖直拉、水平拉。竖直拉包括引体向上、高位下拉，水平拉包括弹力带划船等等。</li>
+<li><strong>屈髋</strong>：最具代表性的动作就是硬拉。</li>
+<li><strong>旋转</strong>：动作比较复杂，在训练当中比较少出现，适合比较资深的训练者，比如说劈和砍，比如下劈球，比如拿锤子砸轮胎。前期不建议做，当你有一定训练水平的时候再去做旋转类动作。</li>
+</ul>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fhg20yeticj30go0ptdmg.jpg" alt></p>
+<h4 id="基础动作模式的意义是什么？"><a href="#基础动作模式的意义是什么？" class="headerlink" title="基础动作模式的意义是什么？"></a>基础动作模式的意义是什么？</h4><ol>
+<li>教会我们如何正确的使用我们的身体</li>
+<li>评估你的是否存在关节功能缺陷</li>
+</ol>
+<p>基于基础动作模式的学习意义和诊断意义，我们对待健身者或者需要进行体能训练的人很多时候都从这里开始。如果诊断结果良好，那么我们学习动作之后就可以上升到基础力量训练，如果诊断出关节功能缺陷，我们就要进行针对性的解决。</p>
+<h3 id="基础力量（肌肉力量）"><a href="#基础力量（肌肉力量）" class="headerlink" title="基础力量（肌肉力量）"></a>基础力量（肌肉力量）</h3><p>力量是所有运动素质的基础，如果你没有足够的力量，很多事情都很难完成。你想学习倒立，如果上肢力量足够，只需要了解动作技巧和细节，可能半个小时就能学会倒立。但是如果力量水平很低，就算把各种技巧和细节都学会了，也没有力气把自身撑起来，更不可能完成倒立。日常生活中，力量水平不足经常会成为我们突破运动瓶颈的障碍，有足够的力量才能跑得更快、跑得更远、跳得更高。所以，力量是所有运动素质的基础。</p>
+<p>因此，在金字塔的这层，我们就要从徒手训练的阶段进阶到自由力量训练的阶段。负重和徒手的训练效果差异非常大，它不仅仅在于力量的提高，在重心控制、身体平衡、协调性控制等方面的区别也很大。力量训练能让身体各项能力同时提高，只有真正进入力量训练阶段（对于健身来说），才可以说真正踏上健身入门之路。</p>
+<h3 id="训练目标（综合体能和专项体能）"><a href="#训练目标（综合体能和专项体能）" class="headerlink" title="训练目标（综合体能和专项体能）"></a>训练目标（综合体能和专项体能）</h3><p>最后，我们来到了金字塔的顶端，这就是我们的最终追求。</p>
+<p>综合体能在此指的是体能所包含的五大运动素质——力量，速度，灵敏，耐力，柔韧。对于有专项运动需求的人，我们需要有针对性的重点发展这五大运功素质中的某几个。</p>
+<p>当我们身体各关节灵活性和稳定性都可以满足要求，且核心控制能力也很强的情况下，又在标准动作的基础上储备了足够的肌肉力量，那么，不管你的目标是减肥，增肌，或者是进行某一个竞技性运动项目，你都可以相对安全且轻松地达成你的目标。</p>
+<p>一般我们把还处在第一第二层的健身者称为健身入门者。不管你是刚刚走进健身房的新手，还是健身多年的老司机，都可以根据这个健身发展流程来审视自己目前的训练处在哪一个阶段。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>体能训练金字塔告诉我们，体能训练要从关节功能和核心控制开始训练，通过六大基础运动模式的训练增强身体基础力量，只有基础力量够了，我们才能真正开始我们的训练目标，根据我们训练的项目增强专项体能，比如拳击，我们要增强力量，耐力，灵敏。</p>
+<p>清楚了这个体能训练金字塔之后，更重要的事还是要去执行。执行层面会涉及更多技术问题，也就是我们常说的如何做标准的动作，如何制定适合自己的训练计划等等。</p>
+<p>健身是一项系统性工程，愿每一个人都能找到方法，科学有效地塑造自己的身体。</p>
+<blockquote>
+<p>参考 </p>
+</blockquote>
+<blockquote>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/20801623" target="_blank" rel="noopener">《体能训练之金字塔》</a></li>
+<li><a href="http://www.jianshenjiaolian.com.cn/lingjichu-fazhan.html" target="_blank" rel="noopener">零基础健身者的运动发展流程</a></li>
+</ul>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+	<div>
+      
+	</div>
+
+    
+
+    
+
+    
+	<div>
+		
+	</div>
+    
+    
+    
+
+    
+    
+    
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+    
+    
+    
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiaxyun.github.io/2017/07/10/「体能训练理论」之动力链/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -796,227 +1226,6 @@
 <p>所以，训练的逻辑很重要！</p>
 <blockquote>
 <p>转自<a href="https://zhuanlan.zhihu.com/p/20786373" target="_blank" rel="noopener">《体能训练之功能性》</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-	<div>
-      
-	</div>
-
-    
-
-    
-
-    
-	<div>
-		
-	</div>
-    
-    
-    
-
-    
-    
-    
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-    
-    
-    
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiaxyun.github.io/2017/07/10/「体能训练理论」之金字塔/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaxyun">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/about-me.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xiaxyun">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/10/「体能训练理论」之金字塔/" itemprop="url">「体能训练理论」之金字塔</a></h1>
-        
-
-        <div class="post-meta">
-			
-
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于&#58;</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-10T00:00:00+08:00">
-                2017-07-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/07/10/「体能训练理论」之金字塔/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/07/10/「体能训练理论」之金字塔/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.3k字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  7分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>体能，人体基础运动能力的统称，人体的本质属性，它支撑着日常生活工作的需要，也支撑着运动技战术的表现。 体能思路，是指导我们设计实施体能训练的思维方式，分析逻辑。它包括回归原点的 <strong>五大运动素质</strong> &amp; <a href="http://qiubaiying.top/2017/07/10/%E4%BD%93%E8%83%BD%E8%AE%AD%E7%BB%83%E7%90%86%E8%AE%BA-%E4%B9%8B%E5%8A%A8%E5%8A%9B%E9%93%BE/" target="_blank" rel="noopener"><strong>动力链理论</strong></a>，也包括在过程中引领方向的 <a href="http://qiubaiying.top/2017/07/10/%E4%BD%93%E8%83%BD%E8%AE%AD%E7%BB%83%E7%90%86%E8%AE%BA-%E4%B9%8B%E5%8A%9F%E8%83%BD%E6%80%A7/" target="_blank" rel="noopener"><strong>功能性原则</strong></a> 和 <a href="http://qiubaiying.top/2017/07/10/%E4%BD%93%E8%83%BD%E8%AE%AD%E7%BB%83%E7%90%86%E8%AE%BA-%E4%B9%8B%E9%87%91%E5%AD%97%E5%A1%94/" target="_blank" rel="noopener"><strong>金字塔</strong></a> 。</p>
-<h2 id="金字塔"><a href="#金字塔" class="headerlink" title="金字塔"></a>金字塔</h2><p>体能训练是一门实践科学，实践先于理论，而理论印证实践。体能训练有四大基础学科，分别是运动解剖学、运动生理学、运动生物力学和运动训练学。</p>
-<p>五大运动素质对应生理学和运动训练学；动力链对应解剖学和运动生物力学；功能性对应着生理和生物力。而金字塔则对应了它们全部！或者说金字塔其实是诸学科在体能训练中的交汇，它囊括了所有之前的理论，并且赋予了更深层的意义。</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fhg20ydk8uj30go0brwh1.jpg" alt></p>
-<p>金字塔代表了人体运动能力发展的客观规律，它是一个流程的引领，思维的分级，以及训练阶段的划分。</p>
-<p>这里包括 <strong>关节功能+核心控制</strong>、<strong>基础动作模式</strong>、<strong>基础力量</strong>、<strong>综合体能</strong>、<strong>专项运动</strong>。他们在逻辑上互为基础和进阶，关节是动作的基础，动作承载力量，力量支撑各个运动素质，而专项是各个运动素质在具体运动中的表现。</p>
-<p>也许这么说可能不能够让大家有清晰的认识，那么接下来我就把每层的内容和它们之间的逻辑关系简单的跟大家分享一下。 99%的运动者都是基础不足，上层过度。我们从基础开始，从下往上说起。</p>
-<h3 id="运动基础（关节功能-核心控制）"><a href="#运动基础（关节功能-核心控制）" class="headerlink" title="运动基础（关节功能 + 核心控制）"></a>运动基础（关节功能 + 核心控制）</h3><p>运动基础主要内容包括 <strong>关节功能</strong> 和 <strong>核心控制</strong> 能力。</p>
-<p>人体的关节功能有两个属性，一个是灵活性，一个是稳定性。举例来说，很多人由于长期缺乏锻炼，肩关节灵活性缺失，第一次学习竖直上举时，怎么努力都举不到头顶，显然应该先改善肩关节灵活性。再比如，膝关节的结构导致它只能进行屈伸的运动，所以我们要保证运动过程中不出现膝内扣，膝外翻的现象，也就是膝关节需要具备的稳定能力。在健身之前我们，应该先评估我们的关节功能。</p>
-<p>运动基础中的第二部分内容就是核心控制能力。很多健身者入门者都会觉得核心是腹肌，觉得练核心的目的是拥有一个好看的腹肌。实际上，腹肌只是核心的一部分，核心是指一个区域，我们的整个躯干都属于核心区域。</p>
-<p>运动的外在表现虽来源于四肢，比如跑步时你的四肢在运动，但是一个出色的外在运动表现是建立在稳定的核心基础之上的。如果躯干不稳定，在跑步的过程中整个脊柱很松散，甩来甩去，这样是很难提高跑步速度的。所以在学习动作之前，应该先加强核心控制能力。</p>
-<p>所以我们会推荐没有进行过抗阻训练、长期久坐的同学先去练习一段时间的瑜伽和普拉提，瑜伽可以很好地改善关节灵活性，进而提高身体的柔韧性；而普拉提能提高的核心控制能力，并提高关节稳定性。<br>一个合格的健身训练者，应该了解不同的训练体系，他要知道自身还缺乏什么，然后向不同的训练体系去借鉴，以提高自己。</p>
-<h3 id="基础动作模式"><a href="#基础动作模式" class="headerlink" title="基础动作模式"></a>基础动作模式</h3><h4 id="什么是基础动作模式？"><a href="#什么是基础动作模式？" class="headerlink" title="什么是基础动作模式？"></a>什么是基础动作模式？</h4><p>简单地说就是，所有动作肢体特有的运动程序。人体就这么些零件，所以很多的动作之间都存在着些许的共性，我们将这些共性提炼出来并进行功能上的抽象，那么就形成了我们现在所要说的基础动作模式——<strong>双腿蹲</strong>、<strong>单腿蹲</strong>、<strong>推</strong>、<strong>拉</strong>、<strong>旋转</strong>、<strong>屈髋</strong>。</p>
-<ul>
-<li><strong>蹲</strong>：分为单腿蹲、双腿蹲。对应的训练动作有剪蹲和深蹲。</li>
-<li><strong>推</strong>：分为水平推、竖直推。对应的训练动作是卧推和实力举。</li>
-<li><strong>拉</strong>：分为竖直拉、水平拉。竖直拉包括引体向上、高位下拉，水平拉包括弹力带划船等等。</li>
-<li><strong>屈髋</strong>：最具代表性的动作就是硬拉。</li>
-<li><strong>旋转</strong>：动作比较复杂，在训练当中比较少出现，适合比较资深的训练者，比如说劈和砍，比如下劈球，比如拿锤子砸轮胎。前期不建议做，当你有一定训练水平的时候再去做旋转类动作。</li>
-</ul>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fhg20yeticj30go0ptdmg.jpg" alt></p>
-<h4 id="基础动作模式的意义是什么？"><a href="#基础动作模式的意义是什么？" class="headerlink" title="基础动作模式的意义是什么？"></a>基础动作模式的意义是什么？</h4><ol>
-<li>教会我们如何正确的使用我们的身体</li>
-<li>评估你的是否存在关节功能缺陷</li>
-</ol>
-<p>基于基础动作模式的学习意义和诊断意义，我们对待健身者或者需要进行体能训练的人很多时候都从这里开始。如果诊断结果良好，那么我们学习动作之后就可以上升到基础力量训练，如果诊断出关节功能缺陷，我们就要进行针对性的解决。</p>
-<h3 id="基础力量（肌肉力量）"><a href="#基础力量（肌肉力量）" class="headerlink" title="基础力量（肌肉力量）"></a>基础力量（肌肉力量）</h3><p>力量是所有运动素质的基础，如果你没有足够的力量，很多事情都很难完成。你想学习倒立，如果上肢力量足够，只需要了解动作技巧和细节，可能半个小时就能学会倒立。但是如果力量水平很低，就算把各种技巧和细节都学会了，也没有力气把自身撑起来，更不可能完成倒立。日常生活中，力量水平不足经常会成为我们突破运动瓶颈的障碍，有足够的力量才能跑得更快、跑得更远、跳得更高。所以，力量是所有运动素质的基础。</p>
-<p>因此，在金字塔的这层，我们就要从徒手训练的阶段进阶到自由力量训练的阶段。负重和徒手的训练效果差异非常大，它不仅仅在于力量的提高，在重心控制、身体平衡、协调性控制等方面的区别也很大。力量训练能让身体各项能力同时提高，只有真正进入力量训练阶段（对于健身来说），才可以说真正踏上健身入门之路。</p>
-<h3 id="训练目标（综合体能和专项体能）"><a href="#训练目标（综合体能和专项体能）" class="headerlink" title="训练目标（综合体能和专项体能）"></a>训练目标（综合体能和专项体能）</h3><p>最后，我们来到了金字塔的顶端，这就是我们的最终追求。</p>
-<p>综合体能在此指的是体能所包含的五大运动素质——力量，速度，灵敏，耐力，柔韧。对于有专项运动需求的人，我们需要有针对性的重点发展这五大运功素质中的某几个。</p>
-<p>当我们身体各关节灵活性和稳定性都可以满足要求，且核心控制能力也很强的情况下，又在标准动作的基础上储备了足够的肌肉力量，那么，不管你的目标是减肥，增肌，或者是进行某一个竞技性运动项目，你都可以相对安全且轻松地达成你的目标。</p>
-<p>一般我们把还处在第一第二层的健身者称为健身入门者。不管你是刚刚走进健身房的新手，还是健身多年的老司机，都可以根据这个健身发展流程来审视自己目前的训练处在哪一个阶段。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>体能训练金字塔告诉我们，体能训练要从关节功能和核心控制开始训练，通过六大基础运动模式的训练增强身体基础力量，只有基础力量够了，我们才能真正开始我们的训练目标，根据我们训练的项目增强专项体能，比如拳击，我们要增强力量，耐力，灵敏。</p>
-<p>清楚了这个体能训练金字塔之后，更重要的事还是要去执行。执行层面会涉及更多技术问题，也就是我们常说的如何做标准的动作，如何制定适合自己的训练计划等等。</p>
-<p>健身是一项系统性工程，愿每一个人都能找到方法，科学有效地塑造自己的身体。</p>
-<blockquote>
-<p>参考 </p>
-</blockquote>
-<blockquote>
-<ul>
-<li><a href="https://zhuanlan.zhihu.com/p/20801623" target="_blank" rel="noopener">《体能训练之金字塔》</a></li>
-<li><a href="http://www.jianshenjiaolian.com.cn/lingjichu-fazhan.html" target="_blank" rel="noopener">零基础健身者的运动发展流程</a></li>
-</ul>
 </blockquote>
 
           
@@ -2684,189 +2893,6 @@ $ git archives
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiaxyun.github.io/2017/02/14/随便聊聊/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaxyun">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/about-me.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xiaxyun">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/02/14/随便聊聊/" itemprop="url">随便聊聊</a></h1>
-        
-
-        <div class="post-meta">
-			
-
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于&#58;</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-14T00:00:00+08:00">
-                2017-02-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/02/14/随便聊聊/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/02/14/随便聊聊/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  150字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="随便谈谈"><a href="#随便谈谈" class="headerlink" title="随便谈谈"></a>随便谈谈</h1><p>今天是情人节，首先祝大家情人节快乐~</p>
-<p>在这特殊的节<strong>日</strong>里，我特意花了半天的时间，我将在简书中的文章都搬到 <a href="http://qiubaiying.github.io" target="_blank" rel="noopener"><strong>BY Blog</strong></a> 上，顺便又修改了下博客框架。</p>
-<h1 id="关于分享"><a href="#关于分享" class="headerlink" title="关于分享"></a>关于分享</h1><p>最近有很多人来请教我关于建站的问题，我都花时间为其解答一一解答。</p>
-<p>感觉在解答别人的问题时，你自己也能学到很多新的知识，同时能沉浸其中。</p>
-<p>我想这就是分享的魔力吧。</p>
-<p>所以，把问题都砸过来吧~</p>
-
-          
-        
-      
-    </div>
-
-	<div>
-      
-	</div>
-
-    
-
-    
-
-    
-	<div>
-		
-	</div>
-    
-    
-    
-
-    
-    
-    
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-    
-    
-    
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2919,7 +2945,7 @@ $ git archives
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2930,7 +2956,7 @@ $ git archives
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2941,7 +2967,7 @@ $ git archives
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -3055,7 +3081,7 @@ $ git archives
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">39.3k</span>
+    <span title="Site words total count">39.7k</span>
   
 </div>
 
