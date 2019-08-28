@@ -120,7 +120,7 @@
 <meta property="og:site_name" content="xiaxyun">
 <meta property="og:description" content="java 后端必备知识，SSH，SSM，数据库，索引，服务器，Tomcat，设计模式">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-28T14:55:15.441Z">
+<meta property="og:updated_time" content="2019-08-28T15:03:12.745Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 后端必备知识">
 <meta name="twitter:description" content="java 后端必备知识，SSH，SSM，数据库，索引，服务器，Tomcat，设计模式">
@@ -464,7 +464,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  665字
+                  751字
                 </span>
               
 
@@ -662,31 +662,52 @@
 <li>压缩工具</li>
 </ul>
 <h2 id="Java进阶技术"><a href="#Java进阶技术" class="headerlink" title="Java进阶技术"></a>Java进阶技术</h2><ul>
-<li>网络编程</li>
+<li>网络编程<ul>
 <li>Socket</li>
+</ul>
+</li>
 <li>并发编程<ul>
 <li>Java多线程技术</li>
 <li>JUC包里的并发类</li>
 </ul>
 </li>
 <li>线程池<ul>
-<li>参数设置</li>
+<li>参数设置 <ul>
+<li>corePoolsize</li>
+<li>maximumpoolsize</li>
+<li>BlockingQueue《Runnable》 workqueue</li>
+<li>RejectedExceptionHandler handler</li>
+</ul>
+</li>
 <li>原理</li>
-<li>拒绝策略</li>
-<li>并发工具类</li>
-<li>阻塞队列</li>
+<li>拒绝策略 Handler<ul>
+<li>CallerRunsPlocy 直接运行run方法，执行自身的run方法</li>
+<li>AvortPolicy 抛出异常，丢弃任务</li>
+<li>DiscardPlocy 直接丢弃</li>
+<li>DiscarOldestPolicy 抛弃最老的线程，位于队列头的任务会被删除</li>
+</ul>
+</li>
+<li>并发工具类 </li>
+<li>阻塞队列 workqueue<ul>
+<li>直接提交</li>
+<li>无界队列linked 各个任务相互独立</li>
+<li>有界队列 防止资源耗尽</li>
 </ul>
 </li>
 </ul>
-<h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><ul>
+</li>
+<li>数据结构<ul>
 <li>ConcurrentHashMap</li>
 <li>CoincurrentLinkedQueue</li>
 </ul>
-<h4 id="并发工具"><a href="#并发工具" class="headerlink" title="并发工具"></a>并发工具</h4><ul>
+</li>
+<li>并发工具<ul>
 <li>CountDownLatch</li>
 <li>Semaphore</li>
 <li>CyclicBarrier</li>
 <li>Exchanger</li>
+</ul>
+</li>
 </ul>
 <h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><ul>
 <li>类加载机制</li>
@@ -798,7 +819,7 @@
   <p><span>本文标题:</span><a href="/2019/08/28/Java-后端必备知识/">Java 后端必备知识</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Xiaxyun 的个人博客">Xiaxyun</a></p>
   <p><span>发布时间:</span>2019年08月28日 - 21:08</p>
-  <p><span>最后更新:</span>2019年08月28日 - 22:08</p>
+  <p><span>最后更新:</span>2019年08月28日 - 23:08</p>
   <p><span>原始链接:</span><a href="/2019/08/28/Java-后端必备知识/" title="Java 后端必备知识">https://xiaxyun.github.io/2019/08/28/Java-后端必备知识/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://xiaxyun.github.io/2019/08/28/Java-后端必备知识/" aria-label="复制成功！"></i></span>
   </p>
@@ -1100,7 +1121,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-后端面试进阶"><span class="nav-number">1.</span> <span class="nav-text">Java 后端面试进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java基础，核心"><span class="nav-number">1.1.</span> <span class="nav-text">Java基础，核心</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-Web技术栈"><span class="nav-number">1.2.</span> <span class="nav-text">Java Web技术栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大数据"><span class="nav-number">1.3.</span> <span class="nav-text">大数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建工具"><span class="nav-number">1.4.</span> <span class="nav-text">构建工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器"><span class="nav-number">1.4.1.</span> <span class="nav-text">服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaWeb常用组件"><span class="nav-number">1.4.2.</span> <span class="nav-text">JavaWeb常用组件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java进阶技术"><span class="nav-number">1.5.</span> <span class="nav-text">Java进阶技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据结构"><span class="nav-number">1.5.0.1.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并发工具"><span class="nav-number">1.5.0.2.</span> <span class="nav-text">并发工具</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM"><span class="nav-number">1.5.1.</span> <span class="nav-text">JVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计模式"><span class="nav-number">1.5.2.</span> <span class="nav-text">设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后端进阶技术"><span class="nav-number">1.5.3.</span> <span class="nav-text">后端进阶技术</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker"><span class="nav-number">1.6.</span> <span class="nav-text">Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux与项目部署"><span class="nav-number">1.7.</span> <span class="nav-text">Linux与项目部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中间件与系统拆分"><span class="nav-number">1.8.</span> <span class="nav-text">中间件与系统拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统架构"><span class="nav-number">1.9.</span> <span class="nav-text">系统架构</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-后端面试进阶"><span class="nav-number">1.</span> <span class="nav-text">Java 后端面试进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java基础，核心"><span class="nav-number">1.1.</span> <span class="nav-text">Java基础，核心</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-Web技术栈"><span class="nav-number">1.2.</span> <span class="nav-text">Java Web技术栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大数据"><span class="nav-number">1.3.</span> <span class="nav-text">大数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建工具"><span class="nav-number">1.4.</span> <span class="nav-text">构建工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器"><span class="nav-number">1.4.1.</span> <span class="nav-text">服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaWeb常用组件"><span class="nav-number">1.4.2.</span> <span class="nav-text">JavaWeb常用组件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java进阶技术"><span class="nav-number">1.5.</span> <span class="nav-text">Java进阶技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM"><span class="nav-number">1.5.1.</span> <span class="nav-text">JVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计模式"><span class="nav-number">1.5.2.</span> <span class="nav-text">设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后端进阶技术"><span class="nav-number">1.5.3.</span> <span class="nav-text">后端进阶技术</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker"><span class="nav-number">1.6.</span> <span class="nav-text">Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux与项目部署"><span class="nav-number">1.7.</span> <span class="nav-text">Linux与项目部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中间件与系统拆分"><span class="nav-number">1.8.</span> <span class="nav-text">中间件与系统拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统架构"><span class="nav-number">1.9.</span> <span class="nav-text">系统架构</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1141,7 +1162,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">42.4k</span>
+    <span title="Site words total count">42.5k</span>
   
 </div>
 
