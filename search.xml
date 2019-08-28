@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2019%2F08%2F28%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java 学习]]></title>
     <url>%2F2019%2F08%2F28%2FJava-%E5%AD%A6%E4%B9%A0%2F</url>
     <content type="text"></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[js学习]]></title>
@@ -34,9 +48,16 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2019%2F05%2F12%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+    <title><![CDATA[First blog]]></title>
+    <url>%2F2019%2F05%2F12%2FFirst-blog%2F</url>
+    <content type="text"><![CDATA[写博客（新建） 使用hexo new “文章名” title: Java 学习 copyright: true date: 2019-08-28 15:50:11 categories: description: tags: 写内容：支持markdown语法（很好用），只需要定义格式，其余的自动布局 先清除 使用hexo clean 再进行编译 hexo generator 最后进行发布 上传到github博客上 hexo deploy 本地运行 hexo server 紧接着是文章的正文部分]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>其他</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Hello 2018]]></title>
