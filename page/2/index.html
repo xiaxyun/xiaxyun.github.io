@@ -366,6 +366,214 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiaxyun.github.io/2017/12/26/从一道网易面试题浅谈-Tagged-Pointer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaxyun">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/about-me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xiaxyun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/26/从一道网易面试题浅谈-Tagged-Pointer/" itemprop="url">从一道网易面试题浅谈 Tagged Pointer</a></h1>
+        
+
+        <div class="post-meta">
+			
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于&#58;</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-26T00:00:00+08:00">
+                2017-12-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/26/从一道网易面试题浅谈-Tagged-Pointer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/12/26/从一道网易面试题浅谈-Tagged-Pointer/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  578字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇博客九月就想写了，因为赶项目拖了到现在，抓住17年尾巴写吧~</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>上次看了一篇 <a href="https://www.jianshu.com/p/cec2a41aa0e7" target="_blank" rel="noopener">《从一道网易面试题浅谈OC线程安全》</a> 的博客，主要内容是：</p>
+<p>作者去网易面试，面试官出了一道面试题：下面代码会发生什么问题？</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSString</span> *target;</span><br><span class="line"><span class="comment">//....</span></span><br><span class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">"parallel"</span>, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000000</span> ; i++) &#123;</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="keyword">self</span>.target = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"ksddkjalkjd%d"</span>,i];</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>答案是：会 crash。</p>
+<p>我们来看看对<code>target</code>属性（<code>strong</code>修饰）进行赋值，相当与 MRC 中的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (void)setTarget:(NSString *)target &#123;</span><br><span class="line">    if (target == _target) return;</span><br><span class="line">    id pre = _target;</span><br><span class="line">    [target retain];//1.先保留新值</span><br><span class="line">    _target = target;//2.再进行赋值</span><br><span class="line">    [pre release];//3.释放旧值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为在 <em>并行队列</em> <code>DISPATCH_QUEUE_CONCURRENT</code> 中<em>异步</em> <code>dispatch_async</code> 对 <code>target</code>属性进行赋值，就会导致 target 已经被 <code>release</code>了，还会执行 <code>release</code>。这就是向已释放内存对象发送消息而发生 crash 。</p>
+<h3 id="但是"><a href="#但是" class="headerlink" title="但是"></a>但是</h3><p>我敲了这段代码，执行的时候发现并不会 crash~</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSString</span> *target;</span><br><span class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">"parallel"</span>, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000000</span> ; i++) &#123;</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">    	<span class="comment">// ‘ksddkjalkjd’删除了</span></span><br><span class="line">        <span class="keyword">self</span>.target = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%d"</span>,i];</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>原因就出在对 <code>self.target</code> 赋值的字符串上。博客的最后也提到了 - <em>‘上述代码的字符串改短一些，就不会崩溃’</em>，还有 <code>Tagged Pointer</code> 这个东西。</p>
+<p>我们将上面的代码修改下：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *str = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%d"</span>, i];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d, %s, %p"</span>, i, object_getClassName(str), str);</span><br><span class="line"><span class="keyword">self</span>.target = str;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0, NSTaggedPointerString, 0x3015</span><br></pre></td></tr></table></figure>
+<p>发现这个字符串类型是 <code>NSTaggedPointerString</code>，那我们来看看 Tagged Pointer 是什么？</p>
+<h3 id="Tagged-Pointer"><a href="#Tagged-Pointer" class="headerlink" title="Tagged Pointer"></a>Tagged Pointer</h3><p>Tagged Pointer 详细的内容可以看这里 <a href="http://www.infoq.com/cn/articles/deep-understanding-of-tagged-pointer" target="_blank" rel="noopener">深入理解Tagged Pointer</a>。</p>
+<p>Tagged Pointer 是一个能够提升性能、节省内存的有趣的技术。</p>
+<ul>
+<li>Tagged Pointer 专门用来存储小的对象，例如 <strong>NSNumber</strong> 和 <strong>NSDate</strong>（后来可以存储小字符串）</li>
+<li>Tagged Pointer 指针的值不再是地址了，而是真正的值。所以，实际上它不再是一个对象了，它只是一个披着对象皮的普通变量而已。</li>
+<li>它的内存并不存储在堆中，也不需要 malloc 和 free，所以拥有极快的读取和创建速度。</li>
+</ul>
+<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><ul>
+<li><p><a href="https://www.jianshu.com/p/cec2a41aa0e7" target="_blank" rel="noopener">从一道网易面试题浅谈OC线程安全</a></p>
+</li>
+<li><p><a href="http://www.infoq.com/cn/articles/deep-understanding-of-tagged-pointer" target="_blank" rel="noopener">深入理解Tagged Pointer</a></p>
+</li>
+<li><p><a href="http://www.cocoachina.com/ios/20150918/13449.html" target="_blank" rel="noopener">【译】采用Tagged Pointer的字符串</a></p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+	<div>
+      
+	</div>
+
+    
+
+    
+
+    
+	<div>
+		
+	</div>
+    
+    
+    
+
+    
+    
+    
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+    
+    
+    
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiaxyun.github.io/2017/12/19/为博客添加-Gitalk-评论插件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -514,227 +722,6 @@
 <h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>最后说几句吐嘈几句， Gitalk 需要你点开每篇文章的页面才会创建对应的 issue,对我来说真是个糟糕的体验（文章有点多~）。</p>
 <p>当然，也有解决办法，这篇 <a href="https://draveness.me/git-comments-initialize" target="_blank" rel="noopener">自动初始化 Gitalk 和 Gitment 评论</a>，就解决了这个问题。</p>
 <p>最后，<a href="https://github.com/qiubaiying/qiubaiying.github.io" target="_blank" rel="noopener">给个 star 吧</a>~</p>
-
-          
-        
-      
-    </div>
-
-	<div>
-      
-	</div>
-
-    
-
-    
-
-    
-	<div>
-		
-	</div>
-    
-    
-    
-
-    
-    
-    
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-    
-    
-    
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiaxyun.github.io/2017/07/10/「体能训练理论」之金字塔/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaxyun">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/about-me.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xiaxyun">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/10/「体能训练理论」之金字塔/" itemprop="url">「体能训练理论」之金字塔</a></h1>
-        
-
-        <div class="post-meta">
-			
-
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于&#58;</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-10T00:00:00+08:00">
-                2017-07-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/07/10/「体能训练理论」之金字塔/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/07/10/「体能训练理论」之金字塔/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.3k字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  7分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>体能，人体基础运动能力的统称，人体的本质属性，它支撑着日常生活工作的需要，也支撑着运动技战术的表现。 体能思路，是指导我们设计实施体能训练的思维方式，分析逻辑。它包括回归原点的 <strong>五大运动素质</strong> &amp; <a href="http://qiubaiying.top/2017/07/10/%E4%BD%93%E8%83%BD%E8%AE%AD%E7%BB%83%E7%90%86%E8%AE%BA-%E4%B9%8B%E5%8A%A8%E5%8A%9B%E9%93%BE/" target="_blank" rel="noopener"><strong>动力链理论</strong></a>，也包括在过程中引领方向的 <a href="http://qiubaiying.top/2017/07/10/%E4%BD%93%E8%83%BD%E8%AE%AD%E7%BB%83%E7%90%86%E8%AE%BA-%E4%B9%8B%E5%8A%9F%E8%83%BD%E6%80%A7/" target="_blank" rel="noopener"><strong>功能性原则</strong></a> 和 <a href="http://qiubaiying.top/2017/07/10/%E4%BD%93%E8%83%BD%E8%AE%AD%E7%BB%83%E7%90%86%E8%AE%BA-%E4%B9%8B%E9%87%91%E5%AD%97%E5%A1%94/" target="_blank" rel="noopener"><strong>金字塔</strong></a> 。</p>
-<h2 id="金字塔"><a href="#金字塔" class="headerlink" title="金字塔"></a>金字塔</h2><p>体能训练是一门实践科学，实践先于理论，而理论印证实践。体能训练有四大基础学科，分别是运动解剖学、运动生理学、运动生物力学和运动训练学。</p>
-<p>五大运动素质对应生理学和运动训练学；动力链对应解剖学和运动生物力学；功能性对应着生理和生物力。而金字塔则对应了它们全部！或者说金字塔其实是诸学科在体能训练中的交汇，它囊括了所有之前的理论，并且赋予了更深层的意义。</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fhg20ydk8uj30go0brwh1.jpg" alt></p>
-<p>金字塔代表了人体运动能力发展的客观规律，它是一个流程的引领，思维的分级，以及训练阶段的划分。</p>
-<p>这里包括 <strong>关节功能+核心控制</strong>、<strong>基础动作模式</strong>、<strong>基础力量</strong>、<strong>综合体能</strong>、<strong>专项运动</strong>。他们在逻辑上互为基础和进阶，关节是动作的基础，动作承载力量，力量支撑各个运动素质，而专项是各个运动素质在具体运动中的表现。</p>
-<p>也许这么说可能不能够让大家有清晰的认识，那么接下来我就把每层的内容和它们之间的逻辑关系简单的跟大家分享一下。 99%的运动者都是基础不足，上层过度。我们从基础开始，从下往上说起。</p>
-<h3 id="运动基础（关节功能-核心控制）"><a href="#运动基础（关节功能-核心控制）" class="headerlink" title="运动基础（关节功能 + 核心控制）"></a>运动基础（关节功能 + 核心控制）</h3><p>运动基础主要内容包括 <strong>关节功能</strong> 和 <strong>核心控制</strong> 能力。</p>
-<p>人体的关节功能有两个属性，一个是灵活性，一个是稳定性。举例来说，很多人由于长期缺乏锻炼，肩关节灵活性缺失，第一次学习竖直上举时，怎么努力都举不到头顶，显然应该先改善肩关节灵活性。再比如，膝关节的结构导致它只能进行屈伸的运动，所以我们要保证运动过程中不出现膝内扣，膝外翻的现象，也就是膝关节需要具备的稳定能力。在健身之前我们，应该先评估我们的关节功能。</p>
-<p>运动基础中的第二部分内容就是核心控制能力。很多健身者入门者都会觉得核心是腹肌，觉得练核心的目的是拥有一个好看的腹肌。实际上，腹肌只是核心的一部分，核心是指一个区域，我们的整个躯干都属于核心区域。</p>
-<p>运动的外在表现虽来源于四肢，比如跑步时你的四肢在运动，但是一个出色的外在运动表现是建立在稳定的核心基础之上的。如果躯干不稳定，在跑步的过程中整个脊柱很松散，甩来甩去，这样是很难提高跑步速度的。所以在学习动作之前，应该先加强核心控制能力。</p>
-<p>所以我们会推荐没有进行过抗阻训练、长期久坐的同学先去练习一段时间的瑜伽和普拉提，瑜伽可以很好地改善关节灵活性，进而提高身体的柔韧性；而普拉提能提高的核心控制能力，并提高关节稳定性。<br>一个合格的健身训练者，应该了解不同的训练体系，他要知道自身还缺乏什么，然后向不同的训练体系去借鉴，以提高自己。</p>
-<h3 id="基础动作模式"><a href="#基础动作模式" class="headerlink" title="基础动作模式"></a>基础动作模式</h3><h4 id="什么是基础动作模式？"><a href="#什么是基础动作模式？" class="headerlink" title="什么是基础动作模式？"></a>什么是基础动作模式？</h4><p>简单地说就是，所有动作肢体特有的运动程序。人体就这么些零件，所以很多的动作之间都存在着些许的共性，我们将这些共性提炼出来并进行功能上的抽象，那么就形成了我们现在所要说的基础动作模式——<strong>双腿蹲</strong>、<strong>单腿蹲</strong>、<strong>推</strong>、<strong>拉</strong>、<strong>旋转</strong>、<strong>屈髋</strong>。</p>
-<ul>
-<li><strong>蹲</strong>：分为单腿蹲、双腿蹲。对应的训练动作有剪蹲和深蹲。</li>
-<li><strong>推</strong>：分为水平推、竖直推。对应的训练动作是卧推和实力举。</li>
-<li><strong>拉</strong>：分为竖直拉、水平拉。竖直拉包括引体向上、高位下拉，水平拉包括弹力带划船等等。</li>
-<li><strong>屈髋</strong>：最具代表性的动作就是硬拉。</li>
-<li><strong>旋转</strong>：动作比较复杂，在训练当中比较少出现，适合比较资深的训练者，比如说劈和砍，比如下劈球，比如拿锤子砸轮胎。前期不建议做，当你有一定训练水平的时候再去做旋转类动作。</li>
-</ul>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fhg20yeticj30go0ptdmg.jpg" alt></p>
-<h4 id="基础动作模式的意义是什么？"><a href="#基础动作模式的意义是什么？" class="headerlink" title="基础动作模式的意义是什么？"></a>基础动作模式的意义是什么？</h4><ol>
-<li>教会我们如何正确的使用我们的身体</li>
-<li>评估你的是否存在关节功能缺陷</li>
-</ol>
-<p>基于基础动作模式的学习意义和诊断意义，我们对待健身者或者需要进行体能训练的人很多时候都从这里开始。如果诊断结果良好，那么我们学习动作之后就可以上升到基础力量训练，如果诊断出关节功能缺陷，我们就要进行针对性的解决。</p>
-<h3 id="基础力量（肌肉力量）"><a href="#基础力量（肌肉力量）" class="headerlink" title="基础力量（肌肉力量）"></a>基础力量（肌肉力量）</h3><p>力量是所有运动素质的基础，如果你没有足够的力量，很多事情都很难完成。你想学习倒立，如果上肢力量足够，只需要了解动作技巧和细节，可能半个小时就能学会倒立。但是如果力量水平很低，就算把各种技巧和细节都学会了，也没有力气把自身撑起来，更不可能完成倒立。日常生活中，力量水平不足经常会成为我们突破运动瓶颈的障碍，有足够的力量才能跑得更快、跑得更远、跳得更高。所以，力量是所有运动素质的基础。</p>
-<p>因此，在金字塔的这层，我们就要从徒手训练的阶段进阶到自由力量训练的阶段。负重和徒手的训练效果差异非常大，它不仅仅在于力量的提高，在重心控制、身体平衡、协调性控制等方面的区别也很大。力量训练能让身体各项能力同时提高，只有真正进入力量训练阶段（对于健身来说），才可以说真正踏上健身入门之路。</p>
-<h3 id="训练目标（综合体能和专项体能）"><a href="#训练目标（综合体能和专项体能）" class="headerlink" title="训练目标（综合体能和专项体能）"></a>训练目标（综合体能和专项体能）</h3><p>最后，我们来到了金字塔的顶端，这就是我们的最终追求。</p>
-<p>综合体能在此指的是体能所包含的五大运动素质——力量，速度，灵敏，耐力，柔韧。对于有专项运动需求的人，我们需要有针对性的重点发展这五大运功素质中的某几个。</p>
-<p>当我们身体各关节灵活性和稳定性都可以满足要求，且核心控制能力也很强的情况下，又在标准动作的基础上储备了足够的肌肉力量，那么，不管你的目标是减肥，增肌，或者是进行某一个竞技性运动项目，你都可以相对安全且轻松地达成你的目标。</p>
-<p>一般我们把还处在第一第二层的健身者称为健身入门者。不管你是刚刚走进健身房的新手，还是健身多年的老司机，都可以根据这个健身发展流程来审视自己目前的训练处在哪一个阶段。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>体能训练金字塔告诉我们，体能训练要从关节功能和核心控制开始训练，通过六大基础运动模式的训练增强身体基础力量，只有基础力量够了，我们才能真正开始我们的训练目标，根据我们训练的项目增强专项体能，比如拳击，我们要增强力量，耐力，灵敏。</p>
-<p>清楚了这个体能训练金字塔之后，更重要的事还是要去执行。执行层面会涉及更多技术问题，也就是我们常说的如何做标准的动作，如何制定适合自己的训练计划等等。</p>
-<p>健身是一项系统性工程，愿每一个人都能找到方法，科学有效地塑造自己的身体。</p>
-<blockquote>
-<p>参考 </p>
-</blockquote>
-<blockquote>
-<ul>
-<li><a href="https://zhuanlan.zhihu.com/p/20801623" target="_blank" rel="noopener">《体能训练之金字塔》</a></li>
-<li><a href="http://www.jianshenjiaolian.com.cn/lingjichu-fazhan.html" target="_blank" rel="noopener">零基础健身者的运动发展流程</a></li>
-</ul>
-</blockquote>
 
           
         
@@ -998,6 +985,227 @@
 <p>了解了动力链，你会更懂运动中的人体，也许你有了思考问题的方向，但仍然缺少方法，所以你还需要具备<a href="http://qiubaiying.github.io/2017/07/10/%E4%BD%93%E8%83%BD%E8%AE%AD%E7%BB%83%E7%90%86%E8%AE%BA-%E4%B9%8B%E5%8A%9F%E8%83%BD%E6%80%A7/" target="_blank" rel="noopener">「功能性」</a>的思维方式。</p>
 <blockquote>
 <p>转自 <a href="https://zhuanlan.zhihu.com/p/20774747" target="_blank" rel="noopener">《体能训练之动力链》</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+	<div>
+      
+	</div>
+
+    
+
+    
+
+    
+	<div>
+		
+	</div>
+    
+    
+    
+
+    
+    
+    
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+    
+    
+    
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiaxyun.github.io/2017/07/10/「体能训练理论」之金字塔/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaxyun">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/about-me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xiaxyun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/10/「体能训练理论」之金字塔/" itemprop="url">「体能训练理论」之金字塔</a></h1>
+        
+
+        <div class="post-meta">
+			
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于&#58;</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-10T00:00:00+08:00">
+                2017-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/10/「体能训练理论」之金字塔/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/07/10/「体能训练理论」之金字塔/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.3k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>体能，人体基础运动能力的统称，人体的本质属性，它支撑着日常生活工作的需要，也支撑着运动技战术的表现。 体能思路，是指导我们设计实施体能训练的思维方式，分析逻辑。它包括回归原点的 <strong>五大运动素质</strong> &amp; <a href="http://qiubaiying.top/2017/07/10/%E4%BD%93%E8%83%BD%E8%AE%AD%E7%BB%83%E7%90%86%E8%AE%BA-%E4%B9%8B%E5%8A%A8%E5%8A%9B%E9%93%BE/" target="_blank" rel="noopener"><strong>动力链理论</strong></a>，也包括在过程中引领方向的 <a href="http://qiubaiying.top/2017/07/10/%E4%BD%93%E8%83%BD%E8%AE%AD%E7%BB%83%E7%90%86%E8%AE%BA-%E4%B9%8B%E5%8A%9F%E8%83%BD%E6%80%A7/" target="_blank" rel="noopener"><strong>功能性原则</strong></a> 和 <a href="http://qiubaiying.top/2017/07/10/%E4%BD%93%E8%83%BD%E8%AE%AD%E7%BB%83%E7%90%86%E8%AE%BA-%E4%B9%8B%E9%87%91%E5%AD%97%E5%A1%94/" target="_blank" rel="noopener"><strong>金字塔</strong></a> 。</p>
+<h2 id="金字塔"><a href="#金字塔" class="headerlink" title="金字塔"></a>金字塔</h2><p>体能训练是一门实践科学，实践先于理论，而理论印证实践。体能训练有四大基础学科，分别是运动解剖学、运动生理学、运动生物力学和运动训练学。</p>
+<p>五大运动素质对应生理学和运动训练学；动力链对应解剖学和运动生物力学；功能性对应着生理和生物力。而金字塔则对应了它们全部！或者说金字塔其实是诸学科在体能训练中的交汇，它囊括了所有之前的理论，并且赋予了更深层的意义。</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fhg20ydk8uj30go0brwh1.jpg" alt></p>
+<p>金字塔代表了人体运动能力发展的客观规律，它是一个流程的引领，思维的分级，以及训练阶段的划分。</p>
+<p>这里包括 <strong>关节功能+核心控制</strong>、<strong>基础动作模式</strong>、<strong>基础力量</strong>、<strong>综合体能</strong>、<strong>专项运动</strong>。他们在逻辑上互为基础和进阶，关节是动作的基础，动作承载力量，力量支撑各个运动素质，而专项是各个运动素质在具体运动中的表现。</p>
+<p>也许这么说可能不能够让大家有清晰的认识，那么接下来我就把每层的内容和它们之间的逻辑关系简单的跟大家分享一下。 99%的运动者都是基础不足，上层过度。我们从基础开始，从下往上说起。</p>
+<h3 id="运动基础（关节功能-核心控制）"><a href="#运动基础（关节功能-核心控制）" class="headerlink" title="运动基础（关节功能 + 核心控制）"></a>运动基础（关节功能 + 核心控制）</h3><p>运动基础主要内容包括 <strong>关节功能</strong> 和 <strong>核心控制</strong> 能力。</p>
+<p>人体的关节功能有两个属性，一个是灵活性，一个是稳定性。举例来说，很多人由于长期缺乏锻炼，肩关节灵活性缺失，第一次学习竖直上举时，怎么努力都举不到头顶，显然应该先改善肩关节灵活性。再比如，膝关节的结构导致它只能进行屈伸的运动，所以我们要保证运动过程中不出现膝内扣，膝外翻的现象，也就是膝关节需要具备的稳定能力。在健身之前我们，应该先评估我们的关节功能。</p>
+<p>运动基础中的第二部分内容就是核心控制能力。很多健身者入门者都会觉得核心是腹肌，觉得练核心的目的是拥有一个好看的腹肌。实际上，腹肌只是核心的一部分，核心是指一个区域，我们的整个躯干都属于核心区域。</p>
+<p>运动的外在表现虽来源于四肢，比如跑步时你的四肢在运动，但是一个出色的外在运动表现是建立在稳定的核心基础之上的。如果躯干不稳定，在跑步的过程中整个脊柱很松散，甩来甩去，这样是很难提高跑步速度的。所以在学习动作之前，应该先加强核心控制能力。</p>
+<p>所以我们会推荐没有进行过抗阻训练、长期久坐的同学先去练习一段时间的瑜伽和普拉提，瑜伽可以很好地改善关节灵活性，进而提高身体的柔韧性；而普拉提能提高的核心控制能力，并提高关节稳定性。<br>一个合格的健身训练者，应该了解不同的训练体系，他要知道自身还缺乏什么，然后向不同的训练体系去借鉴，以提高自己。</p>
+<h3 id="基础动作模式"><a href="#基础动作模式" class="headerlink" title="基础动作模式"></a>基础动作模式</h3><h4 id="什么是基础动作模式？"><a href="#什么是基础动作模式？" class="headerlink" title="什么是基础动作模式？"></a>什么是基础动作模式？</h4><p>简单地说就是，所有动作肢体特有的运动程序。人体就这么些零件，所以很多的动作之间都存在着些许的共性，我们将这些共性提炼出来并进行功能上的抽象，那么就形成了我们现在所要说的基础动作模式——<strong>双腿蹲</strong>、<strong>单腿蹲</strong>、<strong>推</strong>、<strong>拉</strong>、<strong>旋转</strong>、<strong>屈髋</strong>。</p>
+<ul>
+<li><strong>蹲</strong>：分为单腿蹲、双腿蹲。对应的训练动作有剪蹲和深蹲。</li>
+<li><strong>推</strong>：分为水平推、竖直推。对应的训练动作是卧推和实力举。</li>
+<li><strong>拉</strong>：分为竖直拉、水平拉。竖直拉包括引体向上、高位下拉，水平拉包括弹力带划船等等。</li>
+<li><strong>屈髋</strong>：最具代表性的动作就是硬拉。</li>
+<li><strong>旋转</strong>：动作比较复杂，在训练当中比较少出现，适合比较资深的训练者，比如说劈和砍，比如下劈球，比如拿锤子砸轮胎。前期不建议做，当你有一定训练水平的时候再去做旋转类动作。</li>
+</ul>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fhg20yeticj30go0ptdmg.jpg" alt></p>
+<h4 id="基础动作模式的意义是什么？"><a href="#基础动作模式的意义是什么？" class="headerlink" title="基础动作模式的意义是什么？"></a>基础动作模式的意义是什么？</h4><ol>
+<li>教会我们如何正确的使用我们的身体</li>
+<li>评估你的是否存在关节功能缺陷</li>
+</ol>
+<p>基于基础动作模式的学习意义和诊断意义，我们对待健身者或者需要进行体能训练的人很多时候都从这里开始。如果诊断结果良好，那么我们学习动作之后就可以上升到基础力量训练，如果诊断出关节功能缺陷，我们就要进行针对性的解决。</p>
+<h3 id="基础力量（肌肉力量）"><a href="#基础力量（肌肉力量）" class="headerlink" title="基础力量（肌肉力量）"></a>基础力量（肌肉力量）</h3><p>力量是所有运动素质的基础，如果你没有足够的力量，很多事情都很难完成。你想学习倒立，如果上肢力量足够，只需要了解动作技巧和细节，可能半个小时就能学会倒立。但是如果力量水平很低，就算把各种技巧和细节都学会了，也没有力气把自身撑起来，更不可能完成倒立。日常生活中，力量水平不足经常会成为我们突破运动瓶颈的障碍，有足够的力量才能跑得更快、跑得更远、跳得更高。所以，力量是所有运动素质的基础。</p>
+<p>因此，在金字塔的这层，我们就要从徒手训练的阶段进阶到自由力量训练的阶段。负重和徒手的训练效果差异非常大，它不仅仅在于力量的提高，在重心控制、身体平衡、协调性控制等方面的区别也很大。力量训练能让身体各项能力同时提高，只有真正进入力量训练阶段（对于健身来说），才可以说真正踏上健身入门之路。</p>
+<h3 id="训练目标（综合体能和专项体能）"><a href="#训练目标（综合体能和专项体能）" class="headerlink" title="训练目标（综合体能和专项体能）"></a>训练目标（综合体能和专项体能）</h3><p>最后，我们来到了金字塔的顶端，这就是我们的最终追求。</p>
+<p>综合体能在此指的是体能所包含的五大运动素质——力量，速度，灵敏，耐力，柔韧。对于有专项运动需求的人，我们需要有针对性的重点发展这五大运功素质中的某几个。</p>
+<p>当我们身体各关节灵活性和稳定性都可以满足要求，且核心控制能力也很强的情况下，又在标准动作的基础上储备了足够的肌肉力量，那么，不管你的目标是减肥，增肌，或者是进行某一个竞技性运动项目，你都可以相对安全且轻松地达成你的目标。</p>
+<p>一般我们把还处在第一第二层的健身者称为健身入门者。不管你是刚刚走进健身房的新手，还是健身多年的老司机，都可以根据这个健身发展流程来审视自己目前的训练处在哪一个阶段。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>体能训练金字塔告诉我们，体能训练要从关节功能和核心控制开始训练，通过六大基础运动模式的训练增强身体基础力量，只有基础力量够了，我们才能真正开始我们的训练目标，根据我们训练的项目增强专项体能，比如拳击，我们要增强力量，耐力，灵敏。</p>
+<p>清楚了这个体能训练金字塔之后，更重要的事还是要去执行。执行层面会涉及更多技术问题，也就是我们常说的如何做标准的动作，如何制定适合自己的训练计划等等。</p>
+<p>健身是一项系统性工程，愿每一个人都能找到方法，科学有效地塑造自己的身体。</p>
+<blockquote>
+<p>参考 </p>
+</blockquote>
+<blockquote>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/20801623" target="_blank" rel="noopener">《体能训练之金字塔》</a></li>
+<li><a href="http://www.jianshenjiaolian.com.cn/lingjichu-fazhan.html" target="_blank" rel="noopener">零基础健身者的运动发展流程</a></li>
+</ul>
 </blockquote>
 
           
@@ -2489,410 +2697,6 @@ b45959e HEAD@{2}: revert: Revert &quot;add img&quot;
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiaxyun.github.io/2017/02/15/Git指令整理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaxyun">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/about-me.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xiaxyun">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/02/15/Git指令整理/" itemprop="url">Git指令整理</a></h1>
-        
-
-        <div class="post-meta">
-			
-
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于&#58;</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-15T00:00:00+08:00">
-                2017-02-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/02/15/Git指令整理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/02/15/Git指令整理/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.4k字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>随便整理的一些自用的Git指令</p>
-</blockquote>
-<h1 id="GitHub创建仓库提示代码"><a href="#GitHub创建仓库提示代码" class="headerlink" title="GitHub创建仓库提示代码"></a>GitHub创建仓库提示代码</h1><pre><code>echo &quot;# 项目名&quot; &gt;&gt; README.md
-git init
-git add README.md
-git commit -m &quot;first commit&quot;
-git remote add origin git@github.com:qiubaiying/项目名.git
-git push -u origin master
-</code></pre><p>若仓库存在直接push</p>
-<pre><code>git remote add origin git@github.com:qiubaiying/test.git
-git push -u origin master
-</code></pre><h1 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h1><h4 id="创建仓库（初始化）"><a href="#创建仓库（初始化）" class="headerlink" title="创建仓库（初始化）"></a>创建仓库（初始化）</h4><pre><code>在当前指定目录下创建
-git init
-
-新建一个仓库目录
-git init [project-name]
-
-克隆一个远程项目
-git clone [url]
-</code></pre><h4 id="添加文件到缓存区"><a href="#添加文件到缓存区" class="headerlink" title="添加文件到缓存区"></a>添加文件到缓存区</h4><pre><code>添加所有变化的文件
- git add .
-
-添加名称指定文件
-git add text.txt
-</code></pre><h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><pre><code>设置提交代码时的用户信息
-git config [--global] user.name &quot;[name]&quot;
-git config [--global] user.email &quot;[email address]&quot;
-</code></pre><h4 id="提交"><a href="#提交" class="headerlink" title="提交"></a>提交</h4><pre><code>提交暂存区到仓库区
-git commit -m &quot;msg&quot;
-
-# 提交暂存区的指定文件到仓库区
-$ git commit [file1] [file2] ... -m [message]
-
-# 提交工作区自上次commit之后的变化，直接到仓库区
-$ git commit -a
-
-# 提交时显示所有diff信息
-$ git commit -v
-
-# 使用一次新的commit，替代上一次提交
-# 如果代码没有任何新变化，则用来改写上一次commit的提交信息
-$ git commit --amend -m [message]
-
-# 重做上一次commit，并包括指定文件的新变化
-$ git commit --amend [file1] [file2] ...
-</code></pre><h4 id="远程同步"><a href="#远程同步" class="headerlink" title="远程同步"></a>远程同步</h4><pre><code># 下载远程仓库的所有变动
-$ git fetch [remote]
-
-# 显示所有远程仓库
-$ git remote -v
-
-# 显示某个远程仓库的信息
-$ git remote show [remote]
-
-# 增加一个新的远程仓库，并命名
-$ git remote add [shortname] [url]
-
-# 取回远程仓库的变化，并与本地分支合并
-$ git pull [remote] [branch]
-
-# 上传本地指定分支到远程仓库
-$ git push [remote] [branch]
-
-# 强行推送当前分支到远程仓库，即使有冲突
-$ git push [remote] --force
-
-# 推送所有分支到远程仓库
-$ git push [remote] --all
-</code></pre><h4 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h4><pre><code># 列出所有本地分支
-$ git branch
-
-# 列出所有远程分支
-$ git branch -r
-
-# 列出所有本地分支和远程分支
-$ git branch -a
-
-# 新建一个分支，但依然停留在当前分支
-$ git branch [branch-name]
-
-# 新建一个分支，并切换到该分支
-$ git checkout -b [branch]
-
-# 新建一个分支，指向指定commit
-$ git branch [branch] [commit]
-
-# 新建一个分支，与指定的远程分支建立追踪关系
-$ git branch --track [branch] [remote-branch]
-
-# 切换到指定分支，并更新工作区
-$ git checkout [branch-name]
-
-# 切换到上一个分支
-$ git checkout -
-
-# 建立追踪关系，在现有分支与指定的远程分支之间
-$ git branch --set-upstream [branch] [remote-branch]
-
-# 合并指定分支到当前分支
-$ git merge [branch]
-
-# 选择一个commit，合并进当前分支
-$ git cherry-pick [commit]
-
-# 删除分支
-$ git branch -d [branch-name]
-
-# 删除远程分支
-$ git push origin --delete [branch-name]
-$ git branch -dr [remote/branch]
-</code></pre><h4 id="标签Tags"><a href="#标签Tags" class="headerlink" title="标签Tags"></a>标签Tags</h4><pre><code>添加标签 在当前commit
-git tag -a v1.0 -m &apos;xxx&apos; 
-
-添加标签 在指定commit
-git tag v1.0 [commit]
-
-查看
-git tag
-
-删除
-git tag -d V1.0
-
-删除远程tag
-git push origin :refs/tags/[tagName]
-
-推送
-git push origin --tags
-
-拉取
-git fetch origin tag V1.0
-
-新建一个分支，指向某个tag
-git checkout -b [branch] [tag]
-</code></pre><h4 id="查看信息"><a href="#查看信息" class="headerlink" title="查看信息"></a>查看信息</h4><pre><code># 显示有变更的文件
-$ git status
-
-# 显示当前分支的版本历史
-$ git log
-
-# 显示commit历史，以及每次commit发生变更的文件
-$ git log --stat
-
-# 搜索提交历史，根据关键词
-$ git log -S [keyword]
-
-# 显示某个commit之后的所有变动，每个commit占据一行
-$ git log [tag] HEAD --pretty=format:%s
-
-# 显示某个commit之后的所有变动，其&quot;提交说明&quot;必须符合搜索条件
-$ git log [tag] HEAD --grep feature
-
-# 显示某个文件的版本历史，包括文件改名
-$ git log --follow [file]
-$ git whatchanged [file]
-
-# 显示指定文件相关的每一次diff
-$ git log -p [file]
-
-# 显示过去5次提交
-$ git log -5 --pretty --oneline
-
-# 显示所有提交过的用户，按提交次数排序
-$ git shortlog -sn
-
-# 显示指定文件是什么人在什么时间修改过
-$ git blame [file]
-
-# 显示暂存区和工作区的差异
-$ git diff
-
-# 显示暂存区和上一个commit的差异
-$ git diff --cached [file]
-
-# 显示工作区与当前分支最新commit之间的差异
-$ git diff HEAD
-
-# 显示两次提交之间的差异
-$ git diff [first-branch]...[second-branch]
-
-# 显示今天你写了多少行代码
-$ git diff --shortstat &quot;@{0 day ago}&quot;
-
-# 显示某次提交的元数据和内容变化
-$ git show [commit]
-
-# 显示某次提交发生变化的文件
-$ git show --name-only [commit]
-
-# 显示某次提交时，某个文件的内容
-$ git show [commit]:[filename]
-
-# 显示当前分支的最近几次提交
-$ git reflog
-</code></pre><h4 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h4><pre><code># 恢复暂存区的指定文件到工作区
-$ git checkout [file]
-
-# 恢复某个commit的指定文件到暂存区和工作区
-$ git checkout [commit] [file]
-
-# 恢复暂存区的所有文件到工作区
-$ git checkout .
-
-# 重置暂存区的指定文件，与上一次commit保持一致，但工作区不变
-$ git reset [file]
-
-# 重置暂存区与工作区，与上一次commit保持一致
-$ git reset --hard
-
-# 重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变
-$ git reset [commit]
-
-# 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致
-$ git reset --hard [commit]
-
-# 重置当前HEAD为指定commit，但保持暂存区和工作区不变
-$ git reset --keep [commit]
-
-# 新建一个commit，用来撤销指定commit
-# 后者的所有变化都将被前者抵消，并且应用到当前分支
-$ git revert [commit]
-
-# 暂时将未提交的变化移除，稍后再移入
-$ git stash
-$ git stash pop
-</code></pre><h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><pre><code># 生成一个可供发布的压缩包
-$ git archives
-</code></pre>
-          
-        
-      
-    </div>
-
-	<div>
-      
-	</div>
-
-    
-
-    
-
-    
-	<div>
-		
-	</div>
-    
-    
-    
-
-    
-    
-    
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-    
-    
-    
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2945,7 +2749,7 @@ $ git archives
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2967,7 +2771,7 @@ $ git archives
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -3081,7 +2885,7 @@ $ git archives
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">39.7k</span>
+    <span title="Site words total count">40.4k</span>
   
 </div>
 
