@@ -19,7 +19,7 @@
   <entry>
     <title><![CDATA[Firstblog]]></title>
     <url>%2F2019%2F05%2F12%2FFirstblog%2F</url>
-    <content type="text"><![CDATA[简短的摘要 紧接着是文章的正文部分]]></content>
+    <content type="text"><![CDATA[写博客（新建） 使用hexo new “文章名” 写内容：支持markdown语法（很好用），只需要定义格式，其余的自动布局先清除 使用hexo clean再进行编译 hexo generator最后进行发布 上传到github博客上 hexo deploy 本地运行 hexo server 紧接着是文章的正文部分]]></content>
       <categories>
         <category>Hexo</category>
       </categories>
