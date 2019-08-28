@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Java String]]></title>
+    <url>%2F2019%2F08%2F28%2FJava-String%2F</url>
+    <content type="text"><![CDATA[StringString类String s = new String(“abc”);创建char a[]={‘a’,’b’,’c’};String s = new String(a);char a[]={‘a’,’b’,’c’};String s =new String(a,2,4)字符串连接+创建新的对象、增加内存开销变化的string不推荐会用+操作不可变的对象字符串方法length()indexOf()定位字符串开始位置lastIndexOF()charAt(index)substring(begin,end)starsWithendsWithtoUpperCasetoLowerCaseequals字典序比较compareTosplitformat(“xx%”,Object)日期时间格式化replace正则表达式[^456]非[a~r]任意一个[a-zA-Z]任意字母[a-e[g-z]]或(并运算)[a-o&amp;&amp;[def]]交运算[a-d&amp;&amp;[^bc]]差运算可变的String对象StringBuffer可以更改，可以替代Sring类一般生产环境中都用StringBuffer，确保线程安全new StringBuffer(“chen”)chenappend(“robin”)chenrobinlength()9reversenibornehcinsert(4,”word”)niborWangsetLength(3)nibdelete(5,10)StringBuilder不会增加内存开销单线程，大量数据时，使用StringBuilder速度更快append(“aa”)insert(5,”word”)delete(5,10)reverse()setLength()区别有公共的父类AbstractStringBuilder抽象类StringBuilder并未对方法添加同步锁，线程不安全的Stringbuffer添加了同步锁，或对调用的方法添加了同步锁，线程安全的实现原理提高字符串连接效率采用一个char数组保存字符串,初始大小16append动态扩容每次固定扩容2倍，JNI方法System.arraycopy()]]></content>
+      <categories>
+        <category>java学习</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>java string</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java 基础知识]]></title>
+    <url>%2F2019%2F08%2F28%2FJava-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%2F</url>
+    <content type="text"><![CDATA[Java基础知识语言基础基本数据类型boolean数值类型整型byte####### 8位 ####### 包装类Boolean short####### 16位 ####### 包装类Short int####### 32位 ####### 包装类Integer long####### 64位 ####### 包装类Long 字符char####### 16位 ####### 包装类Character 浮点型float####### 32位 ####### 包装类Float double####### 64位 ####### 包装类Double 主类结构包成员变量和局部变量主方法API类库类型转换自动类型转换数值范围由小向大表达式自动提升类型强制类型转换int b =10; int a = (short)b;变量与常量运算符三元运算符表达式？true：false位运算符按位与&amp;按 位或|按位取反~按位异或^移位操作左移&lt;&lt;右移&gt;&gt;无符号右移&gt;&gt;&gt;自增++、自减–逻辑运算与&amp;&amp;或||非!代码注释及编码规范/// //* /引用数据类型类object接口类型数组类型null类型枚举类型标注类型数组String类与对象包装类数字处理Math类数字格式化小数形式0.001~10 000 000科学计数法E’DecimalFormat数学运算方法三角函数指数函数对数函数平方根随机数math.random方法(int)m+(int)(math.random()*n)产生m~m+n(char)a+(char)(math.random()*（b-a+1)产生a~bRandom类随机数种子Random r = new Random();大数字运算BigInteger大整数基本数学运算位运算去相反数绝对值最大公约数是否是素数BigDecimal大小数流程控制foreach]]></content>
+      <categories>
+        <category>java学习</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>java基础</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java 核心知识]]></title>
     <url>%2F2019%2F08%2F28%2FJava-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%2F</url>
     <content type="text"><![CDATA[Java核心多线程并发、多线程机制：程序同时完成多件事情Thread类继承方式使用Runnable接口使用线程的生命周期出生创建new Thread(）就绪t.start()运行等待休眠阻塞死亡线程同步线程安全HashMap线程不安全currentHashmap可解决异步的HashTable线程安全同步的线程同步机制同步块synchronized(object){ //访问资源的代码块}同步方法在方法前加上修饰synchronized void 份（）{//访问资源的代码}网络编程TCP/IP协议应用层传输层互联网层网络层TCP、UDP协议TCP固接连接为基础socket类编程inteAddress类ServerSocket类服务器套接字，等待来自网络上的请求聊天室UDP无连接的通信协议发送端DatagramSocket创建套接字DatagramPacket创建数据包send接收端DatagramSocket创建套接字，接收端口DatagramPacket创建字节组，接收数据包receive不断广播，同组的主机可随时接收数据包224.0.0.0~224.255.255.255端口、套接字端口提供多种服务套接字Socket将应用程序与端口连接起来集合类CollectionList集合ArrayList异步的动态数组LinkedList方法getsetSet集合HashSetTreeSet元素不可重复方法遍历迭代器iterator()添加add删除remove查找Map集合Hashmap效率更高hash表实现异步的，线程不安全可接受空值nullTreeMap存在映射顺序Map中的key对象有一定顺序顺序输出时转换为Treemap方法put（key，value）添加是否包含containsKey(key)get(key)返回指定可以的内容keyset返回所有key的set集合values值对象的collection集合Dictionary类HashTable同步的，保证线程安全不能为空值Vector类动态数组同步的，线程安全的单独的方法操作上是安全的方法都使用了synchronized修饰序列化底层实现与ArrayList类似JVM相关内存分配垃圾回收机制异常处理异常类当某个方法出现异常会创建一个异常对象处理异常当前方法中处理向上抛出异常捕捉异常try{}catch(Exceptiontype e){}try中有异常，则后面的不会执行catch后面的继续执行自定义异常throw抛出异常throws抛出的错误信息运行时异常每个包中都定义了异常类Throwable类的子类常见异常类型转换异常未找到相应类异常‘’算数异常数组下标越界异常数组包含不兼容的值操作数据库异常空指针异常字段未找到、方法未找到字符串转数字异常数组元素个数为负数异常字符串索引异常IO异常不允许访问某类异常newInstance创建实例，但类不允许实例化文件已结束、文件未找到异常枚举类型与泛型枚举类型将常量封装在类中或接口中，编译时检查常量放在枚举类型中enum优点类型安全紧凑有效的数据定义可以和程序其他部分完美交互运行效率高泛型解决类型安全问题，提供编译时安全检查总结泛型的参数必须是类类型，不可以是简单类型参数可有多个可使用extends限制泛型的类型可使用通配符限定泛型的类型输入输出字节输入输出流InputStream字节输入流Reader类FileReaderOutputStreamWriter类FileWriter文件输入输出流File类获取文件基本信息FileInputStream文件输入FileoutputStream文件输出缓存区输入输出BufferedInputStreamBufferedReaderBufferedOutputStreamBufferedWriter缓存是IO的性能优化数据输入输出流DataInputStreamDataOutputStream不必关心数据类型ZIP压缩输入输出流ZipEntry类ZipInpuStreamZipOutputStream数据库操作JDBCjava.sqlconnection接口Statement接口preparedstatementdrivermanagerresultset特点安全性控制并发控制完整性控制故障的发现和恢复SQL语言数据定义create、alter数据操纵select、insert、数据控制grant、revoke事务控制commit、rollback]]></content>

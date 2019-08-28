@@ -101,7 +101,7 @@
 
 
 
-  <meta name="keywords" content="Java,">
+  <meta name="keywords" content="java,java string,">
 
 
 
@@ -112,18 +112,18 @@
 
 
 
-<meta name="description" content="Java 学习">
-<meta name="keywords" content="Java">
+<meta name="description" content="java String类，创建，连接，可变字符串StringBuilder，StringBuffer">
+<meta name="keywords" content="java,java string">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java 学习">
-<meta property="og:url" content="https://xiaxyun.github.io/2019/08/28/Java-学习/index.html">
+<meta property="og:title" content="Java String">
+<meta property="og:url" content="https://xiaxyun.github.io/2019/08/28/Java-String/index.html">
 <meta property="og:site_name" content="xiaxyun">
-<meta property="og:description" content="Java 学习">
+<meta property="og:description" content="java String类，创建，连接，可变字符串StringBuilder，StringBuffer">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-28T07:58:58.279Z">
+<meta property="og:updated_time" content="2019-08-28T11:50:09.355Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java 学习">
-<meta name="twitter:description" content="Java 学习">
+<meta name="twitter:title" content="Java String">
+<meta name="twitter:description" content="java String类，创建，连接，可变字符串StringBuilder，StringBuffer">
 
 
 
@@ -153,13 +153,13 @@
 
 
 
-  <link rel="canonical" href="https://xiaxyun.github.io/2019/08/28/Java-学习/">
+  <link rel="canonical" href="https://xiaxyun.github.io/2019/08/28/Java-String/">
 
 
 
 
 
-  <title>Java 学习 | xiaxyun</title>
+  <title>Java String | xiaxyun</title>
   
 
 
@@ -367,7 +367,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiaxyun.github.io/2019/08/28/Java-学习/">
+    <link itemprop="mainEntityOfPage" href="https://xiaxyun.github.io/2019/08/28/Java-String/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaxyun">
@@ -384,7 +384,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java 学习</h1>
+          <h1 class="post-title" itemprop="name headline">Java String</h1>
         
 
         <div class="post-meta">
@@ -398,7 +398,7 @@
               
                 <span class="post-meta-item-text">发表于&#58;</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-28T15:50:11+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-28T19:48:12+08:00">
                 2019-08-28
               </time>
             
@@ -423,8 +423,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
+                  <a href="/categories/java学习/" itemprop="url" rel="index">
+                    <span itemprop="name">java学习</span>
                   </a>
                 </span>
 
@@ -441,8 +441,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/08/28/Java-学习/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/08/28/Java-学习/" itemprop="commentCount"></span>
+                <a href="/2019/08/28/Java-String/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/08/28/Java-String/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -464,7 +464,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0字
+                  322字
                 </span>
               
 
@@ -488,7 +488,7 @@
 
           
               <div class="post-description">
-                  Java 学习
+                  java String类，创建，连接，可变字符串StringBuilder，StringBuffer
               </div>
           
 
@@ -505,7 +505,7 @@
       
 
       
-        
+        <h1 id="String"><a href="#String" class="headerlink" title="String"></a>String</h1><h2 id="String类"><a href="#String类" class="headerlink" title="String类"></a>String类</h2><h3 id="String-s-new-String-“abc”-创建"><a href="#String-s-new-String-“abc”-创建" class="headerlink" title="String s = new String(“abc”);创建"></a>String s = new String(“abc”);创建</h3><h4 id="char-a-‘a’-’b’-’c’-String-s-new-String-a"><a href="#char-a-‘a’-’b’-’c’-String-s-new-String-a" class="headerlink" title="char a[]={‘a’,’b’,’c’};String s = new String(a);"></a>char a[]={‘a’,’b’,’c’};String s = new String(a);</h4><h4 id="char-a-‘a’-’b’-’c’-String-s-new-String-a-2-4"><a href="#char-a-‘a’-’b’-’c’-String-s-new-String-a-2-4" class="headerlink" title="char a[]={‘a’,’b’,’c’};String s =new String(a,2,4)"></a>char a[]={‘a’,’b’,’c’};String s =new String(a,2,4)</h4><h3 id="字符串连接"><a href="#字符串连接" class="headerlink" title="字符串连接+"></a>字符串连接+</h3><h4 id="创建新的对象、增加内存开销"><a href="#创建新的对象、增加内存开销" class="headerlink" title="创建新的对象、增加内存开销"></a>创建新的对象、增加内存开销</h4><h4 id="变化的string不推荐会用-操作"><a href="#变化的string不推荐会用-操作" class="headerlink" title="变化的string不推荐会用+操作"></a>变化的string不推荐会用+操作</h4><h3 id="不可变的对象"><a href="#不可变的对象" class="headerlink" title="不可变的对象"></a>不可变的对象</h3><h2 id="字符串方法"><a href="#字符串方法" class="headerlink" title="字符串方法"></a>字符串方法</h2><h3 id="length"><a href="#length" class="headerlink" title="length()"></a>length()</h3><h3 id="indexOf-定位字符串开始位置"><a href="#indexOf-定位字符串开始位置" class="headerlink" title="indexOf()定位字符串开始位置"></a>indexOf()定位字符串开始位置</h3><h3 id="lastIndexOF"><a href="#lastIndexOF" class="headerlink" title="lastIndexOF()"></a>lastIndexOF()</h3><h3 id="charAt-index"><a href="#charAt-index" class="headerlink" title="charAt(index)"></a>charAt(index)</h3><h3 id="substring-begin-end"><a href="#substring-begin-end" class="headerlink" title="substring(begin,end)"></a>substring(begin,end)</h3><h3 id="starsWith"><a href="#starsWith" class="headerlink" title="starsWith"></a>starsWith</h3><h3 id="endsWith"><a href="#endsWith" class="headerlink" title="endsWith"></a>endsWith</h3><h3 id="toUpperCase"><a href="#toUpperCase" class="headerlink" title="toUpperCase"></a>toUpperCase</h3><h3 id="toLowerCase"><a href="#toLowerCase" class="headerlink" title="toLowerCase"></a>toLowerCase</h3><h3 id="equals"><a href="#equals" class="headerlink" title="equals"></a>equals</h3><h3 id="字典序比较compareTo"><a href="#字典序比较compareTo" class="headerlink" title="字典序比较compareTo"></a>字典序比较compareTo</h3><h3 id="split"><a href="#split" class="headerlink" title="split"></a>split</h3><h3 id="format-“xx-”-Object"><a href="#format-“xx-”-Object" class="headerlink" title="format(“xx%”,Object)"></a>format(“xx%”,Object)</h3><h4 id="日期时间格式化"><a href="#日期时间格式化" class="headerlink" title="日期时间格式化"></a>日期时间格式化</h4><h3 id="replace"><a href="#replace" class="headerlink" title="replace"></a>replace</h3><h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h3 id="456"><a href="#456" class="headerlink" title="[^456]"></a>[^456]</h3><h4 id="非"><a href="#非" class="headerlink" title="非"></a>非</h4><h3 id="a-r"><a href="#a-r" class="headerlink" title="[a~r]"></a>[a~r]</h3><h4 id="任意一个"><a href="#任意一个" class="headerlink" title="任意一个"></a>任意一个</h4><h3 id="a-zA-Z"><a href="#a-zA-Z" class="headerlink" title="[a-zA-Z]"></a>[a-zA-Z]</h3><h4 id="任意字母"><a href="#任意字母" class="headerlink" title="任意字母"></a>任意字母</h4><h3 id="a-e-g-z"><a href="#a-e-g-z" class="headerlink" title="[a-e[g-z]]"></a>[a-e[g-z]]</h3><h4 id="或-并运算"><a href="#或-并运算" class="headerlink" title="或(并运算)"></a>或(并运算)</h4><h3 id="a-o-amp-amp-def"><a href="#a-o-amp-amp-def" class="headerlink" title="[a-o&amp;&amp;[def]]"></a>[a-o&amp;&amp;[def]]</h3><h4 id="交运算"><a href="#交运算" class="headerlink" title="交运算"></a>交运算</h4><h3 id="a-d-amp-amp-bc"><a href="#a-d-amp-amp-bc" class="headerlink" title="[a-d&amp;&amp;[^bc]]"></a>[a-d&amp;&amp;[^bc]]</h3><h4 id="差运算"><a href="#差运算" class="headerlink" title="差运算"></a>差运算</h4><h2 id="可变的String对象"><a href="#可变的String对象" class="headerlink" title="可变的String对象"></a>可变的String对象</h2><h3 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h3><h4 id="可以更改，可以替代Sring类"><a href="#可以更改，可以替代Sring类" class="headerlink" title="可以更改，可以替代Sring类"></a>可以更改，可以替代Sring类</h4><h4 id="一般生产环境中都用StringBuffer，确保线程安全"><a href="#一般生产环境中都用StringBuffer，确保线程安全" class="headerlink" title="一般生产环境中都用StringBuffer，确保线程安全"></a>一般生产环境中都用StringBuffer，确保线程安全</h4><h4 id="new-StringBuffer-“chen”"><a href="#new-StringBuffer-“chen”" class="headerlink" title="new StringBuffer(“chen”)"></a>new StringBuffer(“chen”)</h4><h5 id="chen"><a href="#chen" class="headerlink" title="chen"></a>chen</h5><h4 id="append-“robin”"><a href="#append-“robin”" class="headerlink" title="append(“robin”)"></a>append(“robin”)</h4><h5 id="chenrobin"><a href="#chenrobin" class="headerlink" title="chenrobin"></a>chenrobin</h5><h4 id="length-1"><a href="#length-1" class="headerlink" title="length()"></a>length()</h4><h5 id="9"><a href="#9" class="headerlink" title="9"></a>9</h5><h4 id="reverse"><a href="#reverse" class="headerlink" title="reverse"></a>reverse</h4><h5 id="nibornehc"><a href="#nibornehc" class="headerlink" title="nibornehc"></a>nibornehc</h5><h4 id="insert-4-”word”"><a href="#insert-4-”word”" class="headerlink" title="insert(4,”word”)"></a>insert(4,”word”)</h4><h5 id="niborWang"><a href="#niborWang" class="headerlink" title="niborWang"></a>niborWang</h5><h4 id="setLength-3"><a href="#setLength-3" class="headerlink" title="setLength(3)"></a>setLength(3)</h4><h5 id="nib"><a href="#nib" class="headerlink" title="nib"></a>nib</h5><h4 id="delete-5-10"><a href="#delete-5-10" class="headerlink" title="delete(5,10)"></a>delete(5,10)</h4><h3 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h3><h4 id="不会增加内存开销"><a href="#不会增加内存开销" class="headerlink" title="不会增加内存开销"></a>不会增加内存开销</h4><h4 id="单线程，大量数据时，使用StringBuilder速度更快"><a href="#单线程，大量数据时，使用StringBuilder速度更快" class="headerlink" title="单线程，大量数据时，使用StringBuilder速度更快"></a>单线程，大量数据时，使用StringBuilder速度更快</h4><h4 id="append-“aa”"><a href="#append-“aa”" class="headerlink" title="append(“aa”)"></a>append(“aa”)</h4><h4 id="insert-5-”word”"><a href="#insert-5-”word”" class="headerlink" title="insert(5,”word”)"></a>insert(5,”word”)</h4><h4 id="delete-5-10-1"><a href="#delete-5-10-1" class="headerlink" title="delete(5,10)"></a>delete(5,10)</h4><h4 id="reverse-1"><a href="#reverse-1" class="headerlink" title="reverse()"></a>reverse()</h4><h4 id="setLength"><a href="#setLength" class="headerlink" title="setLength()"></a>setLength()</h4><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><h4 id="有公共的父类AbstractStringBuilder抽象类"><a href="#有公共的父类AbstractStringBuilder抽象类" class="headerlink" title="有公共的父类AbstractStringBuilder抽象类"></a>有公共的父类AbstractStringBuilder抽象类</h4><h4 id="StringBuilder并未对方法添加同步锁，线程不安全的"><a href="#StringBuilder并未对方法添加同步锁，线程不安全的" class="headerlink" title="StringBuilder并未对方法添加同步锁，线程不安全的"></a>StringBuilder并未对方法添加同步锁，线程不安全的</h4><h4 id="Stringbuffer添加了同步锁，或对调用的方法添加了同步锁，线程安全的"><a href="#Stringbuffer添加了同步锁，或对调用的方法添加了同步锁，线程安全的" class="headerlink" title="Stringbuffer添加了同步锁，或对调用的方法添加了同步锁，线程安全的"></a>Stringbuffer添加了同步锁，或对调用的方法添加了同步锁，线程安全的</h4><h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><h4 id="提高字符串连接效率"><a href="#提高字符串连接效率" class="headerlink" title="提高字符串连接效率"></a>提高字符串连接效率</h4><h4 id="采用一个char数组保存字符串-初始大小16"><a href="#采用一个char数组保存字符串-初始大小16" class="headerlink" title="采用一个char数组保存字符串,初始大小16"></a>采用一个char数组保存字符串,初始大小16</h4><h4 id="append动态扩容"><a href="#append动态扩容" class="headerlink" title="append动态扩容"></a>append动态扩容</h4><h4 id="每次固定扩容2倍，JNI方法System-arraycopy"><a href="#每次固定扩容2倍，JNI方法System-arraycopy" class="headerlink" title="每次固定扩容2倍，JNI方法System.arraycopy()"></a>每次固定扩容2倍，JNI方法System.arraycopy()</h4>
       
     </div>
 
@@ -519,12 +519,12 @@
   <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
   <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
   <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
-  <p><span>本文标题:</span><a href="/2019/08/28/Java-学习/">Java 学习</a></p>
+  <p><span>本文标题:</span><a href="/2019/08/28/Java-String/">Java String</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Xiaxyun 的个人博客">Xiaxyun</a></p>
-  <p><span>发布时间:</span>2019年08月28日 - 15:08</p>
-  <p><span>最后更新:</span>2019年08月28日 - 15:08</p>
-  <p><span>原始链接:</span><a href="/2019/08/28/Java-学习/" title="Java 学习">https://xiaxyun.github.io/2019/08/28/Java-学习/</a>
-    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://xiaxyun.github.io/2019/08/28/Java-学习/" aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2019年08月28日 - 19:08</p>
+  <p><span>最后更新:</span>2019年08月28日 - 19:08</p>
+  <p><span>原始链接:</span><a href="/2019/08/28/Java-String/" title="Java String">https://xiaxyun.github.io/2019/08/28/Java-String/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://xiaxyun.github.io/2019/08/28/Java-String/" aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -572,7 +572,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+          
+            <a href="/tags/java-string/" rel="tag"><i class="fa fa-tag"></i> java string</a>
           
         </div>
       
@@ -585,8 +587,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/13/js学习/" rel="next" title="js学习">
-                <i class="fa fa-chevron-left"></i> js学习
+              <a href="/2019/08/28/Java-基础知识/" rel="next" title="Java 基础知识">
+                <i class="fa fa-chevron-left"></i> Java 基础知识
               </a>
             
           </div>
@@ -594,10 +596,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/28/hello-world/" rel="prev" title="Hello World">
-                Hello World <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -688,8 +686,17 @@ var jiathis_config={
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -807,6 +814,22 @@ var jiathis_config={
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#String"><span class="nav-number">1.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#String类"><span class="nav-number">1.1.</span> <span class="nav-text">String类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#String-s-new-String-“abc”-创建"><span class="nav-number">1.1.1.</span> <span class="nav-text">String s = new String(“abc”);创建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#char-a-‘a’-’b’-’c’-String-s-new-String-a"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">char a[]={‘a’,’b’,’c’};String s = new String(a);</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#char-a-‘a’-’b’-’c’-String-s-new-String-a-2-4"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">char a[]={‘a’,’b’,’c’};String s =new String(a,2,4)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串连接"><span class="nav-number">1.1.2.</span> <span class="nav-text">字符串连接+</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建新的对象、增加内存开销"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">创建新的对象、增加内存开销</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变化的string不推荐会用-操作"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">变化的string不推荐会用+操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不可变的对象"><span class="nav-number">1.1.3.</span> <span class="nav-text">不可变的对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串方法"><span class="nav-number">1.2.</span> <span class="nav-text">字符串方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#length"><span class="nav-number">1.2.1.</span> <span class="nav-text">length()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#indexOf-定位字符串开始位置"><span class="nav-number">1.2.2.</span> <span class="nav-text">indexOf()定位字符串开始位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lastIndexOF"><span class="nav-number">1.2.3.</span> <span class="nav-text">lastIndexOF()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#charAt-index"><span class="nav-number">1.2.4.</span> <span class="nav-text">charAt(index)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#substring-begin-end"><span class="nav-number">1.2.5.</span> <span class="nav-text">substring(begin,end)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#starsWith"><span class="nav-number">1.2.6.</span> <span class="nav-text">starsWith</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#endsWith"><span class="nav-number">1.2.7.</span> <span class="nav-text">endsWith</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#toUpperCase"><span class="nav-number">1.2.8.</span> <span class="nav-text">toUpperCase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#toLowerCase"><span class="nav-number">1.2.9.</span> <span class="nav-text">toLowerCase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#equals"><span class="nav-number">1.2.10.</span> <span class="nav-text">equals</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字典序比较compareTo"><span class="nav-number">1.2.11.</span> <span class="nav-text">字典序比较compareTo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#split"><span class="nav-number">1.2.12.</span> <span class="nav-text">split</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-“xx-”-Object"><span class="nav-number">1.2.13.</span> <span class="nav-text">format(“xx%”,Object)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#日期时间格式化"><span class="nav-number">1.2.13.1.</span> <span class="nav-text">日期时间格式化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#replace"><span class="nav-number">1.2.14.</span> <span class="nav-text">replace</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式"><span class="nav-number">1.3.</span> <span class="nav-text">正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#456"><span class="nav-number">1.3.1.</span> <span class="nav-text">[^456]</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#非"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">非</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#a-r"><span class="nav-number">1.3.2.</span> <span class="nav-text">[a~r]</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#任意一个"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">任意一个</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#a-zA-Z"><span class="nav-number">1.3.3.</span> <span class="nav-text">[a-zA-Z]</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#任意字母"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">任意字母</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#a-e-g-z"><span class="nav-number">1.3.4.</span> <span class="nav-text">[a-e[g-z]]</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#或-并运算"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">或(并运算)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#a-o-amp-amp-def"><span class="nav-number">1.3.5.</span> <span class="nav-text">[a-o&amp;&amp;[def]]</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#交运算"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">交运算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#a-d-amp-amp-bc"><span class="nav-number">1.3.6.</span> <span class="nav-text">[a-d&amp;&amp;[^bc]]</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#差运算"><span class="nav-number">1.3.6.1.</span> <span class="nav-text">差运算</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可变的String对象"><span class="nav-number">1.4.</span> <span class="nav-text">可变的String对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#StringBuffer"><span class="nav-number">1.4.1.</span> <span class="nav-text">StringBuffer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#可以更改，可以替代Sring类"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">可以更改，可以替代Sring类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一般生产环境中都用StringBuffer，确保线程安全"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">一般生产环境中都用StringBuffer，确保线程安全</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#new-StringBuffer-“chen”"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">new StringBuffer(“chen”)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#chen"><span class="nav-number">1.4.1.3.1.</span> <span class="nav-text">chen</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#append-“robin”"><span class="nav-number">1.4.1.4.</span> <span class="nav-text">append(“robin”)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#chenrobin"><span class="nav-number">1.4.1.4.1.</span> <span class="nav-text">chenrobin</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#length-1"><span class="nav-number">1.4.1.5.</span> <span class="nav-text">length()</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#9"><span class="nav-number">1.4.1.5.1.</span> <span class="nav-text">9</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reverse"><span class="nav-number">1.4.1.6.</span> <span class="nav-text">reverse</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#nibornehc"><span class="nav-number">1.4.1.6.1.</span> <span class="nav-text">nibornehc</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#insert-4-”word”"><span class="nav-number">1.4.1.7.</span> <span class="nav-text">insert(4,”word”)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#niborWang"><span class="nav-number">1.4.1.7.1.</span> <span class="nav-text">niborWang</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setLength-3"><span class="nav-number">1.4.1.8.</span> <span class="nav-text">setLength(3)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#nib"><span class="nav-number">1.4.1.8.1.</span> <span class="nav-text">nib</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#delete-5-10"><span class="nav-number">1.4.1.9.</span> <span class="nav-text">delete(5,10)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#StringBuilder"><span class="nav-number">1.4.2.</span> <span class="nav-text">StringBuilder</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#不会增加内存开销"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">不会增加内存开销</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单线程，大量数据时，使用StringBuilder速度更快"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">单线程，大量数据时，使用StringBuilder速度更快</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#append-“aa”"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">append(“aa”)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#insert-5-”word”"><span class="nav-number">1.4.2.4.</span> <span class="nav-text">insert(5,”word”)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#delete-5-10-1"><span class="nav-number">1.4.2.5.</span> <span class="nav-text">delete(5,10)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reverse-1"><span class="nav-number">1.4.2.6.</span> <span class="nav-text">reverse()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setLength"><span class="nav-number">1.4.2.7.</span> <span class="nav-text">setLength()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区别"><span class="nav-number">1.4.3.</span> <span class="nav-text">区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#有公共的父类AbstractStringBuilder抽象类"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">有公共的父类AbstractStringBuilder抽象类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#StringBuilder并未对方法添加同步锁，线程不安全的"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">StringBuilder并未对方法添加同步锁，线程不安全的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Stringbuffer添加了同步锁，或对调用的方法添加了同步锁，线程安全的"><span class="nav-number">1.4.3.3.</span> <span class="nav-text">Stringbuffer添加了同步锁，或对调用的方法添加了同步锁，线程安全的</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现原理"><span class="nav-number">1.4.4.</span> <span class="nav-text">实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#提高字符串连接效率"><span class="nav-number">1.4.4.1.</span> <span class="nav-text">提高字符串连接效率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#采用一个char数组保存字符串-初始大小16"><span class="nav-number">1.4.4.2.</span> <span class="nav-text">采用一个char数组保存字符串,初始大小16</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#append动态扩容"><span class="nav-number">1.4.4.3.</span> <span class="nav-text">append动态扩容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#每次固定扩容2倍，JNI方法System-arraycopy"><span class="nav-number">1.4.4.4.</span> <span class="nav-text">每次固定扩容2倍，JNI方法System.arraycopy()</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -996,9 +1019,9 @@ var jiathis_config={
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://xiaxyun.github.io/2019/08/28/Java-学习/';
-          this.page.identifier = '2019/08/28/Java-学习/';
-          this.page.title = 'Java 学习';
+          this.page.url = 'https://xiaxyun.github.io/2019/08/28/Java-String/';
+          this.page.identifier = '2019/08/28/Java-String/';
+          this.page.title = 'Java String';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';
