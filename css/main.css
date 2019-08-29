@@ -1880,7 +1880,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #5d04ff;
+  background: #bbbfff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3197,7 +3197,7 @@ pre {
 .post {
   margin-top: 60px;
   margin-bottom: 60px;
-  padding: 25px;
+  padding: 0px;
   -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
 }
@@ -3232,11 +3232,4 @@ pre {
 }
 .aplayer-list-author {
   float: right;
-}
-.post {
-  margin-top: 60px;
-  margin-bottom: 60px;
-  padding: 25px;
-  -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
-  -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
 }
